@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recurring Clean | WIPED</title>
+    <link rel="icon" href="./images/wiped-logo.png" type="image/webp">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Material+Symbols+Rounded" rel="stylesheet">
+    <style>
+        body {
+        font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes fadeInDown {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeInDown { animation: fadeInDown 1s ease-out forwards; }
+        .animate-fadeInUp { animation: fadeInUp 1s ease-out forwards; animation-delay: 0.3s; }
+
+        /* For Webkit Browsers (Chrome, Edge, Safari) */
+        ::-webkit-scrollbar {
+            width: 12px; /* width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* track color */
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6; /* scrollbar color (blue) */
+            border-radius: 10px;
+            border: 3px solid #f1f1f1; /* optional padding around thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb; /* darker on hover */
+        }
+
+        /* For Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #3b82f6 #f1f1f1; /* thumb track */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-transparent text-white transition-all duration-500 font-poppins backdrop-blur-0">
+        <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 transition-all duration-500">
+
+            <!-- LEFT: MENU BUTTON -->
+            <button id="menuButton" class="bg-blue-600 px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <span class="text-lg font-medium">Menu</span>
+            </button>
+
+            <!-- CENTER: LOGO -->
+            <a href="index.html" class="flex items-center space-x-2 transition-all duration-500">
+                <img id="mainLogo" src="./images/wiped-logo.png" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
+            </a>
+
+            <!-- RIGHT: BOOK NOW BUTTON -->
+            <button class="bg-blue-600 px-5 py-3 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition">
+                <span class="text-lg font-medium">Book Now</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- OVERLAY MENU -->
+    <div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-[9999] overflow-y-auto">
+        <!-- CLOSE BUTTON -->
+        <button id="closeMenu" class="absolute top-6 right-8 text-white hover:text-blue-400 transition">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <!-- NAVIGATION LINKS -->
+        <nav class="flex flex-wrap justify-center gap-12 text-3xl font-semibold tracking-wide mb-20 mt-8">
+            <a href="index.html" class="hover:text-blue-400 transition">Home</a>
+            <a href="about-us.html" class="hover:text-blue-400 transition">About Us</a>
+            <a href="blog.html" class="hover:text-blue-400 transition">Blogs</a>
+            <a href="contact.html" class="hover:text-blue-400 transition">Contact Us</a>
+        </nav>
+
+        <!-- EXPLORE SERVICES SECTION -->
+        <div class="text-center px-6 pb-20 w-full">
+            <h3 class="text-3xl font-semibold mb-12 text-blue-300 uppercase tracking-wider">Explore Our Services</h3>
+
+            <!-- CARDS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-6xl mx-auto place-items-center">
+
+                <!-- CARD 1 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/care-clean.jpg" alt="Care Clean" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Care Clean</span>
+                        <a href="care-clean.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/deep-clean.jpg" alt="Deep Cleaning" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Deep Cleaning</span>
+                        <a href="deep-clean.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/recurring-clean.webp" alt="Recurring Clean" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Recurring Clean</span>
+                        <a href="recurring-clean.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/move-in-out-clean.webp" alt="Move In/Out Clean" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Move In/Out Clean</span>
+                        <a href="move-in-out.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/post-constuction-cleaning.webp" alt="Post Construction" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Post Construction</span>
+                        <a href="post-construction.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <section class="relative pt-36 pb-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0">
+            <img src="./images/move.jpg" alt="Move In/Out Clean Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-600 bg-opacity-50"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center text-center px-6">
+            <!-- Section Heading -->
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-white animate-fadeInDown">
+                Move In/Out Clean
+            </h1>
+
+            <!-- Description Paragraph -->
+            <p class="text-lg md:text-xl text-white mb-10 animate-fadeInUp">
+                Move In/Out Clean ensures your old or new home is spotless and ready for the next chapter, providing a thorough cleaning for a fresh start.
+            </p>
+
+            <!-- CTA Button -->
+            <a href="contact.html"
+            class="inline-flex items-center gap-3 bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl animate-fadeInUp">
+                Book Your Move In/Out Cleaning
+                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+
+
+    <script>
+        const menuBtn = document.querySelector('button'); // your menu button
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        menuBtn.addEventListener('click', () => {
+        menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        menuOverlay.classList.add('opacity-100');
+        });
+
+        closeMenu.addEventListener('click', () => {
+        menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+        menuOverlay.classList.remove('opacity-100');
+        });
+    </script>
+
+    <!-- SHRINK LOGO ON SCROLL -->
+    <script>
+        const header = document.getElementById("mainHeader");
+        const logo = document.getElementById("mainLogo");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+            header.classList.add("backdrop-blur-md", "bg-white/50");
+            logo.classList.replace("h-20", "h-14");
+            } else {
+            header.classList.remove("backdrop-blur-md", "bg-white/50");
+            logo.classList.replace("h-14", "h-20");
+            }
+        });
+    </script>
+    
+</body>
+</html>

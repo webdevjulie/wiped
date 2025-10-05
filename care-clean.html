@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Clean | WIPED</title>
+    <link rel="icon" href="./images/wiped-logo.png" type="image/webp">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Material+Symbols+Rounded" rel="stylesheet">
+    <style>
+        body {
+        font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes fadeInDown {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeInDown { animation: fadeInDown 1s ease-out forwards; }
+        .animate-fadeInUp { animation: fadeInUp 1s ease-out forwards; animation-delay: 0.3s; }
+
+        /* For Webkit Browsers (Chrome, Edge, Safari) */
+        ::-webkit-scrollbar {
+            width: 12px; /* width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* track color */
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6; /* scrollbar color (blue) */
+            border-radius: 10px;
+            border: 3px solid #f1f1f1; /* optional padding around thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb; /* darker on hover */
+        }
+
+        /* For Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #3b82f6 #f1f1f1; /* thumb track */
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(2rem);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            }
+            .animate-fadeInRight {
+            animation: fadeInRight 0.7s forwards;
+            }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 bg-transparent text-white transition-all duration-500 font-poppins backdrop-blur-0">
+        <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 transition-all duration-500">
+
+            <!-- LEFT: MENU BUTTON -->
+            <button id="menuButton" class="bg-blue-600 px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <span class="text-lg font-medium">Menu</span>
+            </button>
+
+            <!-- CENTER: LOGO -->
+            <a href="index.html" class="flex items-center space-x-2 transition-all duration-500">
+                <img id="mainLogo" src="./images/wiped-logo.png" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
+            </a>
+
+            <!-- RIGHT: BOOK NOW BUTTON -->
+            <button class="bg-blue-600 px-5 py-3 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition">
+                <span class="text-lg font-medium">Book Now</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- OVERLAY MENU -->
+    <div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-[9999] overflow-y-auto">
+        <!-- CLOSE BUTTON -->
+        <button id="closeMenu" class="absolute top-6 right-8 text-white hover:text-blue-400 transition">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <!-- NAVIGATION LINKS -->
+        <nav class="flex flex-wrap justify-center gap-12 text-3xl font-semibold tracking-wide mb-20 mt-8">
+            <a href="index.html" class="hover:text-blue-400 transition">Home</a>
+            <a href="about-us.html" class="hover:text-blue-400 transition">About Us</a>
+            <a href="blog.html" class="hover:text-blue-400 transition">Blogs</a>
+            <a href="contact.html" class="hover:text-blue-400 transition">Contact Us</a>
+        </nav>
+
+        <!-- EXPLORE SERVICES SECTION -->
+        <div class="text-center px-6 pb-20 w-full">
+            <h3 class="text-3xl font-semibold mb-12 text-blue-300 uppercase tracking-wider">Explore Our Services</h3>
+
+            <!-- CARDS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-6xl mx-auto place-items-center">
+
+                <!-- CARD 1 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/care-clean.jpg" alt="Care Clean" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Care Clean</span>
+                        <a href="care-clean.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/deep-clean.jpg" alt="Deep Cleaning" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Deep Cleaning</span>
+                        <a href="deep-clean.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/recurring-clean.webp" alt="Recurring Clean" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Recurring Clean</span>
+                        <a href="recurring-clean.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/move-in-out-clean.webp" alt="Move In/Out Clean" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Move In/Out Clean</span>
+                        <a href="move-in-out.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="relative w-56 h-72 rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+                    <img src="./images/post-constuction-cleaning.webp" alt="Post Construction" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-center text-center p-6">
+                        <span class="text-2xl font-semibold mb-4">Post Construction</span>
+                        <a href="post-construction.html" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-500 transition flex items-center gap-2">
+                            Learn More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="relative pt-36 pb-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0">
+            <img src="./images/clean.jpg" alt="Care Clean Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-600 bg-opacity-50"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center text-center px-6">
+            <!-- Section Heading -->
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-white animate-fadeInDown">
+                Care Clean
+            </h1>
+
+            <!-- Description Paragraph -->
+            <p class="text-lg md:text-xl text-white mb-10 animate-fadeInUp">
+                Care Clean ensures every corner of your space is spotless, healthy, and welcoming with our expert cleaning services.
+            </p>
+
+            <!-- CTA Button -->
+            <a href="contact.html"
+            class="inline-flex items-center gap-3 bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl animate-fadeInUp">
+                Book Your Cleaning Today
+                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+
+    <section class="relative py-20 bg-gradient-to-b from-white/50 via-white/70 to-white/50">
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <!-- Section Heading -->
+            <h2 class="text-4xl md:text-5xl font-extrabold text-blue-700 text-center mb-12 animate-fadeInDown">
+            Why Choose WIPED Cleaning Services?
+            </h2>
+
+            <!-- Grid Layout for Cards: 2 Rows -->
+            <div class="grid md:grid-cols-2 gap-8">
+
+            <!-- Card 1 -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex gap-4 hover:shadow-xl transition-shadow duration-300">
+                <span class="material-icons text-blue-500 text-5xl">cleaning_services</span>
+                <div>
+                <h3 class="text-xl font-semibold mb-2">We Handle the Mess</h3>
+                <p class="text-gray-800 leading-relaxed">
+                    Clutter piling up? Dust bunnies starting their own colony? Life gets busy—we get it. When your schedule is packed, cleaning often falls to the bottom of the list. That’s where WIPED comes in.
+                </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex gap-4 hover:shadow-xl transition-shadow duration-300">
+                <span class="material-icons text-blue-500 text-5xl">schedule</span>
+                <div>
+                <h3 class="text-xl font-semibold mb-2">Flexible & Efficient</h3>
+                <p class="text-gray-800 leading-relaxed">
+                    Whether you live in a 500 sq. ft. apartment or a 5,000 sq. ft. home, we clean spaces of all shapes and sizes—houses, condos, townhomes, and apartments. Need a few odd jobs done? Our hourly service has you covered.
+                </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex gap-4 hover:shadow-xl transition-shadow duration-300">
+                <span class="material-icons text-blue-500 text-5xl">verified</span>
+                <div>
+                <h3 class="text-xl font-semibold mb-2">Satisfaction Guaranteed</h3>
+                <p class="text-gray-800 leading-relaxed">
+                    Finding a trustworthy cleaner can be tough. We carefully select only the best, most reliable professionals. With our 200% satisfaction guarantee, we don’t just promise clean—we guarantee it.
+                </p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex gap-4 hover:shadow-xl transition-shadow duration-300">
+                <span class="material-icons text-blue-500 text-5xl">bolt</span>
+                <div>
+                <h3 class="text-xl font-semibold mb-2">No Estimates. No Hassle.</h3>
+                <p class="text-gray-800 leading-relaxed">
+                    Forget in-person quotes or long wait times. With our flat-rate pricing, simply tell us how many bedrooms and bathrooms you have, select extras, and book online. Quick, transparent, and stress-free—just the way it should be.
+                </p>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-blue-600 text-white py-20 px-6">
+        <!-- Background Image with Opacity -->
+        <div class="absolute inset-0">
+            <img src="./images/cleaning-banner.jpg" alt="Cleaning Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-600/50"></div> <!-- Tailwind 3+ shorthand for opacity -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 animate-fadeInDown">
+                Don’t Wait, Book Your Care Cleaning Today
+            </h2>
+            <p class="text-lg md:text-2xl mb-8 animate-fadeInUp">
+                Let WIPED handle the mess so you can enjoy a spotless home!
+            </p>
+            <a href="contact.html" 
+            class="inline-flex items-center gap-3 bg-white text-blue-600 font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                Book Now
+                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Heading -->
+            <h2 class="text-4xl md:text-5xl font-extrabold text-blue-700 text-center mb-12">
+                What's Included in Our Care Cleaning Services?
+            </h2>
+            <p class="text-center text-lg md:text-xl mb-16 text-gray-600">
+                See what’s included in your cleaning — click on any room below for a full breakdown.
+            </p>
+
+            <!-- Kitchen -->
+            <div class="flex flex-col md:flex-row items-center mb-16 gap-10">
+            <div class="md:w-1/2 md:order-2">
+                    <img 
+                        src="./images/kitchen-cleaning.jpg" 
+                        alt="Kitchen Cleaning" 
+                        class="w-full rounded-xl shadow-lg transform opacity-0 translate-x-10 transition-all duration-700 ease-out animate-fadeInRight"
+                    >
+                </div>
+                <div class="md:w-1/2 md:order-1">
+                    <h3 class="text-3xl font-semibold mb-4">Kitchen</h3>
+                    <ul class="list-none text-gray-700 space-y-2">
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">cleaning_services</span>
+                        Dust all accessible surfaces
+                        </li>
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">table_bar</span>
+                        Clean countertops
+                        </li>
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">water_drop</span>
+                        Empty sink and load up dishwasher with dirty dishes
+                        </li>
+
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">kitchen</span>
+                        Wipe down exterior of appliances like stove, oven, and fridge
+                        </li>
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">microwave</span>
+                        Clean the inside and outside of the microwave
+                        </li>
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">cleaning_services</span>
+                        Clean all floor surfaces
+                        </li>
+                        <li class="flex items-center">
+                        <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">delete</span>
+                        Take out garbage and replace bags
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bathrooms -->
+            <div class="flex flex-col md:flex-row items-center mb-16 gap-10">
+                <div class="md:w-1/2 md:order-1">
+                    <img src="./images/bathroom-cleaning.jpg" alt="Bathroom Cleaning" class="w-full rounded-xl shadow-lg">
+                </div>
+                <div class="md:w-1/2 md:order-2">
+                    <h3 class="text-3xl font-semibold mb-4">Bathrooms</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">checkroom</span>
+                            Polish and clean mirrors
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">water_drop</span>
+                            Clean and wash sinks
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">handyman</span>
+                            Shine spouts and handles
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">countertops</span>
+                            Wash countertops
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">wc</span>
+                            Sanitize toilets and toilet bowls
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">shower</span>
+                            Clean showers and tubs
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">delete</span>
+                            Empty and replace trash bags
+                        </li>
+                        <li class="flex items-center">
+                            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">cleaning_services</span>
+                            Sweep, mop, and vacuum all floor surfaces
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bedroom & Living Room -->
+            <div class="flex flex-col md:flex-row items-center mb-16 gap-10">
+                <div class="md:w-1/2 md:order-2">
+                    <img src="./images/bedroom.jpg" alt="Living Room Cleaning" class="w-full rounded-xl shadow-lg">
+                </div>
+                <div class="md:w-1/2 md:order-1">
+                    <h3 class="text-3xl font-semibold mb-4">Bedroom, Living Room & Common Areas</h3>
+        <ul class="text-gray-700 space-y-2">
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">table_bar</span>
+            Wipe down table surfaces and countertops
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">toys</span>
+            Dust ceiling fans (as needed)
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">window</span>
+            Dust window sills (as needed)
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">delete</span>
+            Empty and replace trash bags
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">cleaning_services</span>
+            Sweep, mop, and vacuum all floor surfaces
+            </li>
+        </ul>
+        </div>
+            </div>
+
+            <!-- Extras -->
+            <div class="flex flex-col md:flex-row items-center mb-16 gap-10">
+                <div class="md:w-1/2 md:order-1">
+                    <img src="./images/window.jpg" alt="Extras Cleaning" class="w-full rounded-xl shadow-lg">
+                </div>
+            <div class="md:w-1/2 md:order-2">
+        <h3 class="text-3xl font-semibold mb-4">Extras (upon request)</h3>
+        <ul class="text-gray-700 space-y-2">
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">kitchen</span>
+            Cleaning inside refrigerator and oven
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">window</span>
+            Interior windows, cabinets, doors, and AC vents
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">blinds</span>
+            Dusting and wet wiping blinds
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">wallpaper</span>
+            Spot cleaning walls
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">move_up</span>
+            Move-in/Move-out cleaning: inside windows, blinds, and baseboards
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">cleaning_services</span>
+            Deep cleaning: baseboards, door frames, handles, vents, light switches, and power outlets
+            </li>
+            <li class="flex items-center">
+            <span class="material-icons text-blue-500 text-base flex-shrink-0 mr-2">build</span>
+            Heavy-duty cleanings available
+            </li>
+        </ul>
+        </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-20 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
+        <!-- Left Card -->
+        <div class="md:w-1/2 bg-white rounded-2xl shadow-lg p-10 hover:shadow-2xl transition-shadow duration-300 animate-fadeInLeft">
+            <div class="flex items-center mb-6">
+                <span class="material-symbols-rounded text-blue-500 text-3xl mr-3">home</span>
+                <h3 class="text-2xl font-bold text-gray-900">Every Home is Unique</h3>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                At WIPED Cleaning Services, we understand that no two homes are the same. Each cleaning is fully customized to fit your space and needs. Our experienced cleaners focus on what matters most in your home.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Have specific requests? Let us know! Communicate your priorities or special instructions at the start of your appointment to get exactly what you need.
+            </p>
+        </div>
+
+        <!-- Right Card -->
+        <div class="md:w-1/2 bg-white rounded-2xl shadow-lg p-10 hover:shadow-2xl transition-shadow duration-300 animate-fadeInRight">
+            <div class="flex items-center mb-6">
+                <span class="material-symbols-rounded text-blue-500 text-3xl mr-3">thumb_up</span>
+                <h3 class="text-2xl font-bold text-gray-900">Our Promise: 100% Satisfaction</h3>
+            </div>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+                We don’t leave until your space looks amazing. Our job isn’t done until you’re completely satisfied with the cleanliness and comfort of your home.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Still deciding? Let’s chat. Call us with questions or book directly through our simple online system. You can reschedule, update services, or cancel anytime — easy, flexible, and stress-free.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+    <section class="relative bg-blue-600 text-white py-20 px-6">
+        <!-- Background Image with Opacity -->
+        <div class="absolute inset-0">
+            <img src="./images/cleaning-banner.jpg" alt="Cleaning Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-600/50"></div> <!-- Tailwind 3+ shorthand for opacity -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 animate-fadeInDown">
+                Don’t Wait, Book Your Care Cleaning Today
+            </h2>
+            <p class="text-lg md:text-2xl mb-8 animate-fadeInUp">
+                Let WIPED handle the mess so you can enjoy a spotless home!
+            </p>
+            <a href="contact.html" 
+            class="inline-flex items-center gap-3 bg-white text-blue-600 font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                Book Now
+                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-blue-900 text-white py-16 px-8 font-poppins">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- COMPANY INFO -->
+        <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
+        <!-- IMAGE ABOVE HEADING -->
+        <img 
+            src="./images/wiped-logo.png" 
+            alt="Cleaning Service Icon" 
+            class="w-20 h-20 mb-5 object-contain"
+        />
+
+        <!-- HEADING -->
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-white">
+            Our Goal is to Wow You With Every Clean
+        </h2>
+
+        <!-- BUTTON -->
+        <button class="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full font-medium shadow-md hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-300">
+            Get a Free Quote
+            <span class="material-icons text-white text-lg">arrow_forward</span>
+        </button>
+        </div>
+
+
+        <!-- OUR SERVICES -->
+        <div>
+            <h3 class="text-xl font-semibold mb-4">Our Services</h3>
+            <ul class="space-y-3 text-gray-300">
+                <li>
+                    <a href="#" class="flex items-center gap-2 hover:text-white transition-colors duration-300">
+                        <span class="material-icons text-blue-400 text-lg">home</span>
+                        Care Clean
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-2 hover:text-white transition-colors duration-300">
+                        <span class="material-icons text-blue-400 text-lg">cleaning_services</span>
+                        Deep Cleaning
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-2 hover:text-white transition-colors duration-300">
+                        <span class="material-icons text-blue-400 text-lg">schedule</span>
+                        Recurring Clean
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-2 hover:text-white transition-colors duration-300">
+                        <span class="material-icons text-blue-400 text-lg">moving</span>
+                        Move In/Out Clean
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-2 hover:text-white transition-colors duration-300">
+                        <span class="material-icons text-blue-400 text-lg">construction</span>
+                        Post Construction
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+            <!-- CONTACT INFO + FOLLOW US -->
+            <div>
+            <h3 class="text-xl font-semibold mb-4">Contact Info</h3>
+            <ul class="space-y-3 text-gray-300 mb-6">
+                <li class="flex items-center gap-2">
+                <span class="material-icons text-blue-400">call</span>
+                <span>306-800-0114</span>
+                </li>
+                <li class="flex items-center gap-2">
+                <span class="material-icons text-blue-400">email</span>
+                <span>admin1112@wipedcleaning.com</span>
+                </li>
+                <li class="flex items-center gap-2">
+                <span class="material-icons text-blue-400">location_on</span>
+                <span>Regina, Saskatchewan, Canada</span>
+                </li>
+            </ul>
+
+            <!-- FOLLOW US -->
+            <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-300 hover:text-white text-3xl transition-colors duration-300">
+                <span class="material-icons">facebook</span>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-white text-3xl transition-colors duration-300">
+                <span class="material-icons">photo_camera</span> <!-- Instagram -->
+                </a>
+                <a href="#" class="text-gray-300 hover:text-white text-3xl transition-colors duration-300">
+                <span class="material-icons">public</span> <!-- X/Twitter -->
+                </a>
+            </div>
+            </div>
+        </div>
+
+        <!-- COPYRIGHT -->
+        <div class="border-t border-white mt-12 pt-6 text-center text-gray-400 text-sm">
+            © Copyright 2025. All Rights Reserved.
+        </div>
+    </footer>
+
+
+
+    <script>
+        const menuBtn = document.querySelector('button'); // your menu button
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        menuBtn.addEventListener('click', () => {
+        menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        menuOverlay.classList.add('opacity-100');
+        });
+
+        closeMenu.addEventListener('click', () => {
+        menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+        menuOverlay.classList.remove('opacity-100');
+        });
+    </script>
+
+    <!-- SHRINK LOGO ON SCROLL -->
+    <script>
+        const header = document.getElementById("mainHeader");
+        const logo = document.getElementById("mainLogo");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+            header.classList.add("backdrop-blur-md", "bg-white/50");
+            logo.classList.replace("h-20", "h-14");
+            } else {
+            header.classList.remove("backdrop-blur-md", "bg-white/50");
+            logo.classList.replace("h-14", "h-20");
+            }
+        });
+    </script>
+    
+</body>
+</html>
