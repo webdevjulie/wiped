@@ -182,16 +182,22 @@
         </div>
     </div>
 
-    <section class="relative h-screen bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1604881991720-f91add269bed?auto=format&fit=crop&w=1350&q=80');">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-white/30 to-white/40"></div>
+    <section class="relative h-screen overflow-hidden">
+        <!-- Background Video -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="./video/clean-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>  
+
+        <!-- Overlay (optional, subtle) -->
+        <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
 
         <!-- Main Content -->
         <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-gray-900 animate-fadeInDown">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-gray-200 animate-fadeInDown">
                 We Instantly Polished
             </h1>
-            <p class="text-lg md:text-2xl mb-8 text-gray-800 animate-fadeInUp">
+            <p class="text-lg md:text-2xl mb-8 text-gray-300 animate-fadeInUp">
                 Every Detail, Every Space, Every Time
             </p>
             <a href="#"
