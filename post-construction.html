@@ -74,24 +74,26 @@
             </a>
 
             <!-- RIGHT: BOOK NOW BUTTON -->
-            <button class="bg-blue-600 px-5 py-3 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition">
-                <span class="text-lg font-medium">Book Now</span>
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
-                </svg>
-            </button>
+            <a href="contact.html">
+                <button class="bg-blue-600 px-5 py-3 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition">
+                    <span class="text-lg font-medium">Book Now</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+                    </svg>
+                </button>
+            </a>
         </div>
     </header>
 
     <!-- OVERLAY MENU -->
-    <div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-start opacity-0 pointer-events-none transition-opacity duration-200 z-[9999] overflow-y-auto">
-        <!-- CLOSE BUTTON -->
-        <button id="closeMenu" class="absolute top-6 right-8 text-white hover:text-blue-400 transition">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-        </button>
+<div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-start z-[9999] overflow-y-auto hidden">
+    <!-- CLOSE BUTTON -->
+    <button id="closeMenu" class="absolute top-6 right-8 text-white hover:text-blue-400">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </button>
 
         <!-- NAVIGATION LINKS -->
         <nav class="flex flex-wrap justify-center gap-12 text-3xl font-semibold tracking-wide mb-20 mt-8">
@@ -649,20 +651,19 @@
     </footer>
 
     <script>
-        const menuBtn = document.getElementById('menuButton');
-        const menuOverlay = document.getElementById('menuOverlay');
+        const menuButton = document.getElementById('menuButton');
         const closeMenu = document.getElementById('closeMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
 
-        menuBtn.addEventListener('click', () => {
-            menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-            menuOverlay.classList.add('opacity-100');
+        // Show menu instantly
+        menuButton.addEventListener('click', () => {
+            menuOverlay.classList.remove('hidden');
         });
 
+        // Hide menu instantly
         closeMenu.addEventListener('click', () => {
-            menuOverlay.classList.add('opacity-0', 'pointer-events-none');
-            menuOverlay.classList.remove('opacity-100');
+            menuOverlay.classList.add('hidden');
         });
-
     </script>
 
     <!-- SHRINK LOGO ON SCROLL -->
