@@ -85,7 +85,7 @@
     </header>
 
     <!-- OVERLAY MENU -->
-    <div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-[9999] overflow-y-auto">
+    <div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-start opacity-0 pointer-events-none transition-opacity duration-200 z-[9999] overflow-y-auto">
         <!-- CLOSE BUTTON -->
         <button id="closeMenu" class="absolute top-6 right-8 text-white hover:text-blue-400 transition">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -97,7 +97,6 @@
         <nav class="flex flex-wrap justify-center gap-12 text-3xl font-semibold tracking-wide mb-20 mt-8">
             <a href="index.html" class="hover:text-blue-400 transition">Home</a>
             <a href="about-us.html" class="hover:text-blue-400 transition">About Us</a>
-            <a href="blog.html" class="hover:text-blue-400 transition">Blogs</a>
             <a href="contact.html" class="hover:text-blue-400 transition">Contact Us</a>
         </nav>
 
@@ -317,14 +316,14 @@
                     </p>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="./images/deep-clean-1.jpg" alt="Deep Cleaning Service" class="w-full rounded-3xl shadow-lg object-cover">
+                    <img src="./images/deep-cleaning-services.jpg" alt="Deep Cleaning Service" class="w-full rounded-3xl shadow-lg object-cover">
                 </div>
             </div>
 
             <!-- SECTION 2: IMAGE LEFT, TEXT RIGHT -->
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
-                    <img src="./images/deep-clean-2.jpg" alt="Booking Deep Clean" class="w-full rounded-3xl shadow-lg object-cover">
+                    <img src="./images/booking-deep-clean.jpg" alt="Booking Deep Clean" class="w-full rounded-3xl shadow-lg object-cover">
                 </div>
                 <div class="md:w-1/2 space-y-6">
                     <p class="text-gray-700 text-lg md:text-xl">
@@ -368,7 +367,7 @@
                     </ul>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="./images/deep-clean-3.jpg" alt="Guaranteed Deep Clean" class="w-full rounded-3xl shadow-lg object-cover">
+                    <img src="./images/guaranteed-clean.jpg" alt="Guaranteed Deep Clean" class="w-full rounded-3xl shadow-lg object-cover">
                 </div>
             </div>
         </div>
@@ -680,12 +679,6 @@
                             Book Now
                         </a>
                     </li>
-                    <li>
-                        <a href="blog.html" class="flex items-center justify-center sm:justify-start gap-2 hover:text-white transition-colors duration-300">
-                            <span class="material-icons text-blue-400 text-lg">rss_feed</span>
-                            Blog
-                        </a>
-                    </li>
                 </ul>
             </div>
 
@@ -738,18 +731,18 @@
     </footer>
 
     <script>
-        const menuBtn = document.querySelector('button'); // your menu button
+        const menuBtn = document.getElementById('menuButton');
         const menuOverlay = document.getElementById('menuOverlay');
         const closeMenu = document.getElementById('closeMenu');
 
         menuBtn.addEventListener('click', () => {
-        menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-        menuOverlay.classList.add('opacity-100');
+            menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            menuOverlay.classList.add('opacity-100');
         });
 
         closeMenu.addEventListener('click', () => {
-        menuOverlay.classList.add('opacity-0', 'pointer-events-none');
-        menuOverlay.classList.remove('opacity-100');
+            menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+            menuOverlay.classList.remove('opacity-100');
         });
     </script>
 
