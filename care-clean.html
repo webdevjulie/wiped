@@ -65,6 +65,33 @@
             .animate-fadeInRight {
             animation: fadeInRight 0.7s forwards;
             }
+
+        .floating-call-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s, background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-call-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        .floating-call-btn .material-icons {
+            font-size: 28px;
+        }
     </style>
 </head>
 <body>
@@ -854,6 +881,11 @@
         </div>
     </footer>
 
+    <!-- Floating Call Button -->
+    <a href="tel:+16393821688" class="floating-call-btn" title="Call Us">
+        <span class="material-icons">call</span>
+    </a>
+    
     <script>
         const menuBtn = document.getElementById('menuButton');
         const menuOverlay = document.getElementById('menuOverlay');
