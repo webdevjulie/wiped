@@ -311,59 +311,98 @@
                     </div>
 
                     <!-- Service Type -->
-<div class="md:col-span-2 mt-6 space-y-4">
-    <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
-        Service Type
-        <span class="material-symbols-outlined text-blue-800">info</span>
-    </h3>
-    <select id="serviceType" class="border p-3 rounded-lg w-full">
-        <option value="" disabled selected>Select a Service Type</option>
-        <option value="care-clean">Care Cleaning</option>
-        <option value="deep-clean">Deep Cleaning</option>
-        <option value="move-in-out-clean">Move In/Out Cleaning</option>
-        <option value="post-construction">Post Construction</option>
-    </select>
-</div>
-
-<!-- Package Selection (hidden by default) -->
-<div id="packageDiv" class="md:col-span-2 mt-4 space-y-4" style="display:none;">
-    <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
-        Select Package
-        <span class="material-symbols-outlined text-blue-800">info</span>
-    </h3>
-    <select id="packageSelect" class="border p-3 rounded-lg w-full">
-        <option value="" disabled selected>Select a Package</option>
-    </select>
-</div>
-                
-                    <!-- Bedrooms & Bathrooms -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <select id="bedroomSelect" class="border p-3 rounded-lg w-full">
-                            <option value="" disabled selected>Number of Bedrooms *</option>
-                            <option value="1">1 Bedroom</option>
-                            <option value="2">2 Bedrooms</option>
-                            <option value="3">3 Bedrooms</option>
-                            <option value="4">4 Bedrooms</option>
-                            <option value="5">5 Bedrooms</option>
-                            <option value="6">6 Bedrooms</option>
+                    <div class="md:col-span-2 mt-6 space-y-4">
+                        <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
+                            Service Type
+                            <span class="material-symbols-outlined text-blue-800">info</span>
+                        </h3>
+                        <select id="serviceType" class="border p-3 rounded-lg w-full">
+                            <option value="" disabled selected>Select a Service Type</option>
+                            <option value="care-clean">Care Cleaning</option>
+                            <option value="deep-clean">Deep Cleaning</option>
+                            <option value="move-in-out-clean">Move In/Out Cleaning</option>
+                            <option value="post-construction">Post Construction</option>
                         </select>
+                    </div>
+
+                    <!-- Package Selection (hidden by default) -->
+                    <div id="packageDiv" class="md:col-span-2 mt-4 space-y-4" style="display:none;">
+                        <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
+                            Select Package
+                            <span class="material-symbols-outlined text-blue-800">info</span>
+                        </h3>
+                        <select id="packageSelect" class="border p-3 rounded-lg w-full">
+                            <option value="" disabled selected>Select a Package</option>
+                        </select>
+                    </div>
+                
+                    <!--Bathrooms -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         <select id="bathroomSelect" class="border p-3 rounded-lg w-full">
-                            <option value="" disabled selected>Number of Bathrooms *</option>
-                            <option value="1">1 Bathroom</option>
+                            <option value="" disabled selected>Full Bathrooms *</option>
+                            <option value="1">1 Bathrooms</option>
                             <option value="2">2 Bathrooms</option>
-                            <option value="2.5">2.5 Bathrooms</option>
                             <option value="3">3 Bathrooms</option>
-                            <option value="3.5">3.5 Bathrooms</option>
                             <option value="4">4 Bathrooms</option>
-                            <option value="4.5">4.5 Bathrooms</option>
                             <option value="5">5 Bathrooms</option>
-                            <option value="5.5">5.5 Bathrooms</option>
                             <option value="6">6 Bathrooms</option>
+                        </select>
+                        <select id="halfBathroomSelect" class="border p-3 rounded-lg w-full">
+                            <option value="" disabled selected>Half Bathrooms *</option>
+                            <option value="2.5">2.5 Bathrooms</option>
+                            <option value="3.5">3.5 Bathrooms</option>
+                            <option value="4.5">4.5 Bathrooms</option>
+                            <option value="5.5">5.5 Bathrooms</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Additional Services -->
+                <div class="md:col-span-2 mt-6">
+                    <!-- Checkbox -->
+                    <label class="flex items-center gap-2 mb-4 cursor-pointer">
+                        <input id="noCleanCheckbox" type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="text-xl font-semibold text-blue-800">We're not cleaning some rooms...</span>
+                    </label>
+
+                    <!-- Hidden by default -->
+                    <div id="noCleanRooms" class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+                        <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
+                                    hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                    bg-gradient-to-b from-gray-100 to-white"
+                            data-price="24">
+                            <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">bed</span>
+                            <span class="font-bold text-base text-gray-800 group-hover:text-black">Bed (Office, or Dry Room)</span>
+                        </div>
+                        <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
+                                    hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                    bg-gradient-to-b from-gray-100 to-white"
+                            data-price="12">
+                            <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">shower</span>
+                            <span class="font-bold text-base text-gray-800 group-hover:text-black">Bath (or other Wet Room)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frequency Options -->
+                <div id="frequency-options" class="md:col-span-2 mt-6">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800 text-left">How Often is this service wanted?</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div data-value="One Time" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            One Time
+                        </div>
+                        <div data-value="Every 4 Weeks 15% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            Every 4 Weeks <span class="text-green-600 font-semibold">15% Off</span>
+                        </div>
+                        <div data-value="Every 2 Weeks 30% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            Every 2 Weeks <span class="text-green-600 font-semibold">30% Off</span>
+                        </div>
+                        <div data-value="Every Week 40% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            Every Week <span class="text-green-600 font-semibold">40% Off</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Services
                 <div class="md:col-span-2 mt-6">
                 <h3 class="text-xl font-semibold mb-4 text-blue-800 flex items-center gap-2">
                     <span class="material-symbols-outlined text-blue-800">build</span>
@@ -372,7 +411,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    <!-- Empty Kitchen Cabinet -->
+                    Empty Kitchen Cabinet
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -381,7 +420,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Empty Kitchen Cabinet - $25</span>
                     </div>
 
-                    <!-- Empty Fridge -->
+                    Empty Fridge
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -390,7 +429,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Empty Fridge - $25</span>
                     </div>
 
-                    <!-- Full Stocked Fridge -->
+                    Full Stocked Fridge
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -399,7 +438,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Full Stocked Fridge - $35</span>
                     </div>
 
-                    <!-- Load and Fold Laundry -->
+                    Load and Fold Laundry
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -408,7 +447,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Load & Fold Laundry - $40</span>
                     </div>
 
-                    <!-- Garage Sweep/Vacuum -->
+                    Garage Sweep/Vacuum
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -417,7 +456,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Garage Sweep/Vacuum - $15</span>
                     </div>
 
-                    <!-- Bedsheet Change -->
+                    Bedsheet Change
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -426,7 +465,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Bedsheet Change - $15</span>
                     </div>
 
-                    <!-- Laundry Fold (no wash) -->
+                    Laundry Fold (no wash)
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -435,7 +474,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Laundry Fold (no wash) - $20</span>
                     </div>
 
-                    <!-- Wall Wash -->
+                    Wall Wash
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -444,7 +483,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Wall Wash - $55</span>
                     </div>
 
-                    <!-- Pet -->
+                    Pet
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -453,7 +492,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Pet - $15</span>
                     </div>
 
-                    <!-- Additional Room -->
+                    Additional Room
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -462,7 +501,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Additional Room - $15</span>
                     </div>
 
-                    <!-- Finished Basement -->
+                    Finished Basement
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -471,7 +510,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Finished Basement - $35</span>
                     </div>
 
-                    <!-- Blinds Wet Wiping -->
+                    Blinds Wet Wiping
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -480,7 +519,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Blinds Wet Wiping - $35</span>
                     </div>
 
-                    <!-- Bathroom -->
+                    Bathroom
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -489,7 +528,7 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Bathroom - $24</span>
                     </div>
 
-                    <!-- Half Bathroom -->
+                    Half Bathroom
                     <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                 bg-gradient-to-b from-gray-100 to-white"
@@ -498,10 +537,10 @@
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Half Bathroom - $12</span>
                     </div>
 
-                </div>
+                 </div>
 
                 <h3 class="text-lg font-semibold mt-4 text-blue-800">Additional Services Total: <span id="additionalTotal">$0</span></h3>
-                </div>
+                </div> -->
 
                 <!-- Address Details -->
                 <div class="md:col-span-2 mt-6">
@@ -575,10 +614,15 @@
                     </div>
                 </div>
 
+                <!-- Date Selection -->
+                <div id="date-options" class="md:col-span-2 mt-6">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800 text-left">Select Date</h3>
+                    <input type="date" id="serviceDate" class="border border-gray-300 rounded-lg p-2 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+
                 <!-- Frequency Options -->
                 <div id="frequency-options" class="md:col-span-2 mt-6">
                 <h3 class="text-xl font-semibold mb-4 text-blue-800 text-left">How Often?</h3>
-
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-1">
                     <!-- One Time -->
@@ -622,9 +666,6 @@
                     </div>
                 </div>
                 </div>
-
-
-
 
                 <!-- Tips (100% Optional) -->
                 <div class="md:col-span-2 mt-6">
@@ -685,51 +726,61 @@
                     <div class="max-w-sm mx-auto bg-white shadow-xl rounded-2xl p-6 border border-gray-100 sticky top-20 transition-transform hover:scale-105">
                         <h3 class="text-2xl font-bold text-blue-700 mb-6 text-center">Booking Summary</h3>
 
-                        <!-- Home Type -->
-                        <div class="flex justify-between mb-6">
-                        <div class="flex items-center gap-2">
-                            <span class="material-icons text-blue-500">home</span>
-                            <span class="font-medium text-gray-800">Home Type:</span>
-                        </div>
-                        <span id="summary-home-type" class="text-gray-500 font-semibold">-</span>
+                        <!-- HOME TYPE SUMMARY -->
+                        <div class="flex flex-col gap-1 hidden" id="homeTypeSummaryDiv">
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons text-blue-500">home</span>
+                                <span class="font-medium text-gray-800">Home Type:</span>
+                            </div>
+                            <span id="summary-home-type" class="text-gray-500 font-semibold">-</span>
                         </div>
 
-                        <!-- Right side stacked details: Service, Bedrooms, Bathrooms -->
+                        <!-- SERVICE AND BATHROOMS -->
                         <div class="flex flex-col items-end gap-2 mb-6">
-                        <span id="summary-service" class="text-gray-500 font-semibold">-</span>
-                        <div class="flex items-center gap-1">
-                            <span class="font-medium text-gray-500">Bedrooms:</span>
-                            <span id="summary-bedroom-price" class="text-gray-500 font-semibold">$0.00</span>
+                            <span id="summary-service" class="text-gray-500 font-semibold">-</span>
+
+                            <div class="flex items-center gap-1 hidden" id="fullBathroomSummaryDiv">
+                                <span class="font-medium text-gray-500">Full Bathrooms:</span>
+                                <span id="summary-full-bathroom-price" class="text-gray-500 font-semibold">$0.00</span>
+                            </div>
+
+                            <div class="flex items-center gap-1 hidden" id="halfBathroomSummaryDiv">
+                                <span class="font-medium text-gray-500">Half Bathrooms:</span>
+                                <span id="summary-half-bathroom-price" class="text-gray-500 font-semibold">$0.00</span>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-1">
-                            <span class="font-medium text-gray-500">Bathrooms:</span>
-                            <span id="summary-bathroom-price" class="text-gray-500 font-semibold">$0.00</span>
-                        </div>
+
+                        <!-- Selected Date Summary (Right Panel) -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons text-blue-500">calendar_today</span>
+                                <span class="font-medium text-gray-800">Date:</span>
+                            </div>
+                            <span id="summary-date" class="text-gray-600 font-semibold">-</span>
                         </div>
 
                         <!-- How Often -->
                         <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-2">
-                            <span class="material-icons text-orange-500">repeat</span>
-                            <span class="font-medium text-gray-800">How Often:</span>
-                        </div>
-                        <span id="summary-frequency" class="text-gray-600 font-semibold">-</span>
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons text-orange-500">repeat</span>
+                                <span class="font-medium text-gray-800">How Often:</span>
+                            </div>
+                            <span id="summary-frequency" class="text-gray-600 font-semibold">-</span>
                         </div>
 
                         <!-- Additional Info: Payment Method & Tip -->
                         <div id="summary-additional" class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 text-sm">
-                        <p id="summary-payment-method">Payment Method: -</p>
-                        <p id="summary-tip">Tip: -</p>
+                            <p id="summary-payment-method">Payment Method: -</p>
+                            <p id="summary-tip">Tip: -</p>
                         </div>
 
                         <!-- Total -->
                         <div class="flex justify-between items-center text-lg font-bold bg-gradient-to-r from-blue-100 to-blue-50 p-4 rounded-xl border border-blue-200 mt-4">
-                        <span class="text-gray-800">Total:</span>
-                        <span id="summary-total" class="text-blue-600 text-xl">$0.00</span>
+                            <span class="text-gray-800">Total:</span>
+                            <span id="summary-total" class="text-blue-600 text-xl">$0.00</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
