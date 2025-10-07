@@ -311,36 +311,30 @@
                     </div>
 
                     <!-- Service Type -->
-                    <div class="md:col-span-2 mt-6 space-y-4">
-                        <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
-                            Service Type
-                            <span class="material-symbols-outlined text-blue-800">info</span>
-                        </h3>
-                        <select id="serviceType" class="border p-3 rounded-lg w-full">
-                            <option value="" disabled selected>Select a Service Type</option>
+<div class="md:col-span-2 mt-6 space-y-4">
+    <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
+        Service Type
+        <span class="material-symbols-outlined text-blue-800">info</span>
+    </h3>
+    <select id="serviceType" class="border p-3 rounded-lg w-full">
+        <option value="" disabled selected>Select a Service Type</option>
+        <option value="care-clean">Care Cleaning</option>
+        <option value="deep-clean">Deep Cleaning</option>
+        <option value="move-in-out-clean">Move In/Out Cleaning</option>
+        <option value="post-construction">Post Construction</option>
+    </select>
+</div>
 
-                            <!-- Basic Clean -->
-                            <option value="basic-clean-1bedroom">Basic Clean - 1 Bedroom</option>
-                            <option value="basic-clean-2bedroom">Basic Clean - 2 Bedroom</option>
-                            <option value="basic-clean-3bedroom">Basic Clean - 3 Bedroom</option>
-                            <option value="basic-clean-4bedroom">Basic Clean - 4 Bedroom</option>
-                            <option value="basic-clean-5bedroom">Basic Clean - 5 Bedroom</option>
-                            <option value="basic-clean-6bedroom">Basic Clean - 6 Bedroom</option>
-
-                            <!-- Deep Clean -->
-                            <option value="deep-clean-1bedroom">Deep Clean - 1 Bedroom</option>
-                            <option value="deep-clean-2bedroom">Deep Clean - 2 Bedroom</option>
-                            <option value="deep-clean-3bedroom">Deep Clean - 3 Bedroom</option>
-                            <option value="deep-clean-4bedroom">Deep Clean - 4 Bedroom</option>
-                            <option value="deep-clean-5bedroom">Deep Clean - 5 Bedroom</option>
-                            <option value="deep-clean-6bedroom">Deep Clean - 6 Bedroom</option>
-
-                            <!-- Other Services -->
-                            <option value="recurring-clean">Recurring Clean</option>
-                            <option value="move-in-out-clean">Move In/Out Clean</option>
-                            <option value="post-construction">Post Construction</option>
-                        </select>
-                    </div>
+<!-- Package Selection (hidden by default) -->
+<div id="packageDiv" class="md:col-span-2 mt-4 space-y-4" style="display:none;">
+    <h3 class="text-xl font-semibold text-blue-800 flex items-center gap-2">
+        Select Package
+        <span class="material-symbols-outlined text-blue-800">info</span>
+    </h3>
+    <select id="packageSelect" class="border p-3 rounded-lg w-full">
+        <option value="" disabled selected>Select a Package</option>
+    </select>
+</div>
                 
                     <!-- Bedrooms & Bathrooms -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
