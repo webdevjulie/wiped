@@ -1,88 +1,109 @@
 // Elements
-const serviceType = document.getElementById('serviceType');
-const packageDiv = document.getElementById('packageDiv');
-const packageSelect = document.getElementById('packageSelect');
+  const serviceType = document.getElementById('serviceType');
+  const summaryService = document.getElementById('summary-service');
+  const summaryTotal = document.getElementById('summary-total');
+  const summaryHomeType = document.getElementById('summary-home-type');
+  const bedroomSelect = document.getElementById('bedroomSelect');
+  const bathroomSelect = document.getElementById('bathroomSelect');
 
-const summaryService = document.querySelector('#summary-service');
-const summaryPackage = document.querySelector('#summary-package');
-const summaryBase = document.querySelector('#summary-base');
-const summaryTotal = document.querySelector('#summary-total');
-const summaryPayment = document.querySelector('#summary-payment'); // Optional: in your order summary
+  const summaryBedroomPrice = document.getElementById('summary-bedroom-price');
+  const summaryBathroomPrice = document.getElementById('summary-bathroom-price');
+  const summaryFrequency = document.getElementById('summary-frequency');
+  const summaryPayment = document.getElementById('summary-payment-method');
+  const summaryTip = document.getElementById('summary-tip');
 
-// Packages & prices
-const packages = {
-  "care-clean": { "Studio/1 Bedroom": 145, "2 Bedroom": 165, "3 Bedroom": 205, "4 Bedroom": 245, "5 Bedroom": 295, "6 Bedroom": 375 },
-  "deep-clean": { "Studio/1 Bedroom": 145, "2 Bedroom": 165, "3 Bedroom": 205, "4 Bedroom": 245, "5 Bedroom": 295, "6 Bedroom": 375 },
-  "recurring-clean": { "Studio/1 Bedroom": 145, "2 Bedroom": 165, "3 Bedroom": 205, "4 Bedroom": 245, "5 Bedroom": 295, "6 Bedroom": 375 },
-  "move-in-out-clean": { "Studio/1 Bedroom": 145, "2 Bedroom": 165, "3 Bedroom": 205, "4 Bedroom": 245, "5 Bedroom": 295, "6 Bedroom": 375 },
-  "post-construction": { "Studio/1 Bedroom": 145, "2 Bedroom": 165, "3 Bedroom": 205, "4 Bedroom": 245, "5 Bedroom": 295, "6 Bedroom": 375 }
-};
+  const homeTypes = document.querySelectorAll('.home-type');
+  const paymentOptions = document.querySelectorAll('#paymentOptions > div');
+  const frequencyRadios = document.querySelectorAll('input[name="frequency"]');
+  const tipRadios = document.querySelectorAll('input[name="tip"]');
 
-// Track prices
-let basePrice = 0;
-let additionalTotal = 0;
+  let bedroomPrice = 0;
+  let bathroomPrice = 0;
+  let selectedTip = 0;
 
-// --- Service Type Change ---
-serviceType.addEventListener('change', () => {
-  const selectedService = serviceType.value;
+  // --- Home Type ---
+  homeTypes.forEach(type => {
+    type.addEventListener('click', () => {
+      const isSelected = type.classList.contains('selected');
 
-  summaryService.textContent = serviceType.options[serviceType.selectedIndex].text;
-  summaryPackage.textContent = '-';
-  basePrice = 0;
-  additionalTotal = 0;
-  summaryBase.textContent = '$0.00';
-  summaryTotal.textContent = '$0.00';
+      // Remove selection from all
+      homeTypes.forEach(t => t.classList.remove('selected', 'border-4', 'border-blue-500', 'border-pink-500', 'border-green-500'));
 
-  if (selectedService && packages[selectedService]) {
-    packageSelect.innerHTML = '<option value="" disabled selected>Select a Package</option>';
-    Object.keys(packages[selectedService]).forEach(pkg => {
-      const option = document.createElement('option');
-      option.value = pkg;
-      option.textContent = `${pkg} - $${packages[selectedService][pkg]}`;
-      packageSelect.appendChild(option);
+      if (!isSelected) {
+        type.classList.add('selected', 'border-4', 'border-blue-500'); // Example color
+        bedroomSelect.removeAttribute('disabled');
+        bathroomSelect.removeAttribute('disabled');
+        summaryHomeType.textContent = type.dataset.type.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
+      } else {
+        bedroomSelect.setAttribute('disabled', true);
+        bathroomSelect.setAttribute('disabled', true);
+        bedroomSelect.value = '';
+        bathroomSelect.value = '';
+        bedroomPrice = 0;
+        bathroomPrice = 0;
+        summaryHomeType.textContent = '-';
+      }
+      updateSummary();
     });
-    packageDiv.classList.remove('hidden');
-  } else {
-    packageDiv.classList.add('hidden');
+  });
+
+  // --- Bedroom & Bathroom ---
+  bedroomSelect.addEventListener('change', () => {
+    const bedrooms = parseInt(bedroomSelect.value) || 0;
+    bedroomPrice = bedrooms * 20; // 20 per bedroom
+    updateSummary();
+  });
+
+  bathroomSelect.addEventListener('change', () => {
+    const bathrooms = parseFloat(bathroomSelect.value) || 0;
+    const fullBathrooms = Math.floor(bathrooms);
+    const halfBathroom = bathrooms % 1 === 0.5 ? 10 : 0;
+    bathroomPrice = fullBathrooms * 20 + halfBathroom;
+    updateSummary();
+  });
+
+  // --- Service Type ---
+  serviceType.addEventListener('change', () => {
+    summaryService.textContent = serviceType.options[serviceType.selectedIndex].text;
+    updateSummary();
+  });
+
+  // --- Frequency ---
+  frequencyRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      summaryFrequency.textContent = radio.value.charAt(0).toUpperCase() + radio.value.slice(1).replace('-', ' ');
+    });
+  });
+
+  // --- Payment Method ---
+  paymentOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      // Remove highlight
+      paymentOptions.forEach(o => o.classList.remove('bg-blue-200', 'border-blue-500', 'font-semibold'));
+      option.classList.add('bg-blue-200', 'border-blue-500', 'font-semibold');
+
+      // Update summary only
+      summaryPayment.textContent = `Payment Method: ${option.getAttribute('data-value')}`;
+    });
+  });
+
+  // --- Tip ---
+  tipRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      selectedTip = parseInt(radio.value) || 0;
+      summaryTip.textContent = `Tip: ${selectedTip}%`;
+      updateSummary();
+    });
+  });
+
+  // --- Update Summary Total ---
+  function updateSummary() {
+    summaryBedroomPrice.textContent = `$${bedroomPrice.toFixed(2)}`;
+    summaryBathroomPrice.textContent = `$${bathroomPrice.toFixed(2)}`;
+
+    let subtotal = bedroomPrice + bathroomPrice;
+    let tipAmount = subtotal * (selectedTip / 100);
+    let total = subtotal + tipAmount;
+
+    summaryTotal.textContent = `$${total.toFixed(2)}`;
   }
-});
-
-// --- Package Selection ---
-packageSelect.addEventListener('change', () => {
-  const selectedService = serviceType.value;
-  const selectedPackage = packageSelect.value;
-
-  basePrice = packages[selectedService][selectedPackage];
-
-  summaryPackage.textContent = selectedPackage;
-  summaryBase.textContent = `$${basePrice}`;
-  summaryTotal.textContent = `$${basePrice + additionalTotal}`;
-});
-
-// --- Additional Services ---
-const additionalServices = document.querySelectorAll('input[type="checkbox"][data-price]');
-additionalServices.forEach(service => {
-  service.addEventListener('change', () => {
-    additionalTotal = 0;
-    additionalServices.forEach(s => {
-      if (s.checked) additionalTotal += Number(s.dataset.price);
-    });
-    summaryTotal.textContent = `$${basePrice + additionalTotal}`;
-  });
-});
-
-// --- Payment Method Selection ---
-const paymentOptions = document.querySelectorAll('#paymentOptions div');
-paymentOptions.forEach(option => {
-  option.addEventListener('click', () => {
-    // Remove highlight from all
-    paymentOptions.forEach(o => o.classList.remove('bg-blue-100', 'border-blue-600'));
-
-    // Highlight selected
-    option.classList.add('bg-blue-100', 'border-blue-600');
-
-    // Store value and update summary
-    const selectedPayment = option.dataset.value;
-    if (summaryPayment) summaryPayment.textContent = selectedPayment;
-  });
-});

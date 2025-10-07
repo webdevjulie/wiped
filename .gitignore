@@ -1,0 +1,2 @@
+# Ignore PHP credentials file
+php/.env

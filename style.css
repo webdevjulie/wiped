@@ -1,0 +1,6 @@
+.selected {
+    @apply bg-blue-500 text-white;
+  }
+  .selected span.material-symbols-outlined {
+    @apply text-white;
+  }
