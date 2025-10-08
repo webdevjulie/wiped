@@ -340,62 +340,156 @@ function updateSummary() {
     }
 }
 
+
 // --- Form Submit ---
 const bookingForm = document.getElementById('bookingForm');
-bookingForm.addEventListener('submit', function (e) {
+
+bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('service', serviceType?.value || '');
-    formData.append('homeType', summaryHomeType?.textContent !== '-' ? summaryHomeType.textContent : '');
-    formData.append('packagePrice', parseFloat(packageSelect?.value) || 0);
-    formData.append('bedrooms', parseInt(bedroomSelect?.value) || 0);
-    formData.append('fullBathrooms', parseInt(fullBathroomSelect?.value) || 0);
-    formData.append('halfBathrooms', parseInt(halfBathroomSelect?.value) || 0);
-    formData.append('frequency', document.querySelector('input[name="frequency"]:checked')?.value || '');
-    formData.append('payment', document.querySelector('#paymentOptions > div.bg-blue-200')?.getAttribute('data-value') || '');
-    formData.append('tip', parseInt(document.querySelector('input[name="tip"]:checked')?.value) || 0);
-    formData.append('total', parseFloat(summaryTotal?.textContent.replace('$', '')) || 0);
-    formData.append('serviceDate', serviceDate?.value || '');
 
-    const noClean = [];
-    additionalServices.forEach(service => {
-        if (service.classList.contains('selected')) {
-            const icon = service.querySelector('span.material-symbols-outlined')?.textContent.toLowerCase();
-            if (icon) noClean.push(icon);
+    // Show a "Sending..." state
+    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+        const formData = new FormData();
+
+        // --- Contact Info ---
+        formData.append('firstName', document.getElementById('firstName')?.value.trim() || '');
+        formData.append('lastName', bookingForm.querySelector('input[placeholder="Last Name *"]')?.value.trim() || '');
+        formData.append('email', bookingForm.querySelector('input[type="email"]')?.value.trim() || '');
+        formData.append('phone', bookingForm.querySelector('input[type="tel"]')?.value.trim() || '');
+        formData.append('emergencyContactName', bookingForm.querySelector('input[placeholder="Emergency Contact Name"]')?.value.trim() || '');
+        formData.append('emergencyContactPhone', bookingForm.querySelector('input[placeholder="Emergency Contact Phone"]')?.value.trim() || '');
+
+        // --- Home Details ---
+        formData.append('homeType', summaryHomeType?.textContent !== '-' ? summaryHomeType.textContent : '');
+        formData.append('serviceType', serviceType?.value || '');
+        formData.append('packagePrice', parseFloat(packageSelect?.value) || 0);
+        formData.append('packageName', packageSelect?.selectedOptions[0]?.text || '');
+        formData.append('fullBathrooms', parseInt(fullBathroomSelect?.value) || 0);
+        formData.append('halfBathrooms', parseInt(halfBathroomSelect?.value) || 0);
+
+        // --- Rooms to Skip Cleaning ---
+        const noCleanRooms = [...additionalServices]
+            .filter(s => s.classList.contains('selected'))
+            .map(s => s.querySelector('span.material-symbols-outlined')?.textContent.toLowerCase())
+            .filter(Boolean)
+            .join(', ');
+        formData.append('noCleanRooms', noCleanRooms);
+
+        // --- Frequency ---
+        const selectedFreq = document.querySelector('input[name="frequency"]:checked')?.value
+            || document.querySelector('.frequency-btn.selected')?.getAttribute('data-value') 
+            || '';
+        formData.append('frequency', selectedFreq);
+
+        // --- Address Details ---
+        const addressFields = [
+            { label: 'Address', key: 'address' },
+            { label: 'Unit', key: 'unit' },
+            { label: 'City', key: 'city' },
+            { label: 'Province', key: 'province' },
+            { label: 'Zipcode', key: 'zipcode' },
+            { label: 'Address Note', key: 'addressNote' }
+        ];
+        addressFields.forEach(field => {
+            const input = bookingForm.querySelector(`input[placeholder*="${field.label}"]`);
+            formData.append(field.key, input?.value.trim() || '');
+        });
+
+        // --- Key Information & Notes ---
+        const keyInfoContainer = document.getElementById('keyInfoGroup');
+        const keyInfo = keyInfoContainer 
+            ? [...keyInfoContainer.querySelectorAll('input[type="checkbox"]')]
+                .filter(c => c.checked)
+                .map(c => c.nextSibling?.textContent.trim() || '')
+                .join(', ')
+            : '';
+        formData.append('keyInfo', keyInfo);
+
+        const notesTextarea = document.getElementById('jobNotes');
+        formData.append('notes', notesTextarea?.value.trim() || '');
+
+        // --- Additional Questions ---
+        const preferredContactSelect = document.getElementById('preferredContact');
+        formData.append('preferredContact', preferredContactSelect?.value || '');
+
+        const feedbackTextarea = bookingForm.querySelector('textarea[placeholder*="best cleaning service"]');
+        formData.append('feedback', feedbackTextarea?.value.trim() || '');
+
+        // --- Service Date ---
+        formData.append('serviceDate', serviceDate?.value || '');
+
+        // --- Tip ---
+        const tipValue = parseInt(document.querySelector('input[name="tip"]:checked')?.value) || 0;
+        formData.append('tip', tipValue);
+
+        // --- Payment ---
+        const paymentValue = document.querySelector('#paymentOptions > div.bg-blue-200')?.dataset.value || '';
+        formData.append('paymentMethod', paymentValue);
+
+        // --- Total ---
+        formData.append('total', parseFloat(summaryTotal?.textContent.replace('$', '')) || 0);
+
+        // --- Recurring Total ---
+        if (!recurringTotalDiv.classList.contains('hidden')) {
+            formData.append('recurringTotal', parseFloat(recurringTotalSpan.textContent.replace('$', '')) || 0);
         }
-    });
-    formData.append('noCleanRooms', noClean.join(','));
+        
+        // --- Send to PHP ---
+        const response = await fetch('sendBooking.php', { method: 'POST', body: formData });
+        const text = await response.text();
 
-    const paymentValue = document.querySelector('#paymentOptions > div.bg-blue-200')?.getAttribute('data-value') || '';
-    if (paymentValue.toLowerCase() === 'e-transfer') {
-        formData.append('eTransferNote', 'Please send your E-Transfer after the cleaning is completed to: admin@wipedcleaningsrvcs.com');
+        let data;
+        try { data = JSON.parse(text); } 
+        catch { throw new Error('Unexpected server response.'); }
+
+        if (data.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Booking Sent!',
+                text: 'Your booking has been submitted successfully.',
+                confirmButtonColor: '#1E40AF'
+            });
+
+            bookingForm.reset();
+
+            // Reset summary
+            summaryService.textContent = '-';
+            summaryHomeType.textContent = '-';
+            summaryTotal.textContent = '$0.00';
+            summaryFrequency.textContent = '-';
+            summaryPayment.textContent = '-';
+            summaryTip.textContent = '-';
+            fullBathroomPrice = 0;
+            halfBathroomPrice = 0;
+            packagePrice = 0;
+            removeNoCleanSummary();
+            recurringTotalDiv.classList.add('hidden');
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error Sending Booking',
+                text: data.message,
+                confirmButtonColor: '#B91C1C'
+            });
+        }
+
+    } catch (err) {
+        console.error('Booking error:', err);
+        Swal.fire({
+            icon: 'error',
+            title: 'Submission Failed',
+            text: err.message || 'Please try again later.',
+            confirmButtonColor: '#B91C1C'
+        });
+
+    } finally {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
     }
-
-    fetch('sendBooking.php', { method: 'POST', body: formData })
-        .then(res => res.text())
-        .then(text => {
-            try {
-                const data = JSON.parse(text);
-                if (data.success) {
-                    alert('Booking sent successfully!');
-                    bookingForm.reset();
-                    summaryService.textContent = '-';
-                    summaryHomeType.textContent = '-';
-                    summaryTotal.textContent = '$0.00';
-                    summaryFrequency.textContent = '-';
-                    summaryPayment.textContent = '-';
-                    summaryTip.textContent = '-';
-                    fullBathroomPrice = 0;
-                    halfBathroomPrice = 0;
-                    packagePrice = 0;
-                    removeNoCleanSummary();
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            } catch (err) {
-                console.error('Non-JSON response:', text);
-                alert('Error sending booking. Check console.');
-            }
-        })
-        .catch(err => console.error('Fetch error:', err));
 });

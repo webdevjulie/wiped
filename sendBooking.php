@@ -1,16 +1,16 @@
 <?php
-header('Content-Type: application/json'); // force JSON response
+header('Content-Type: application/json');
 
 require './mailer/vendor/autoload.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $dotenv = parse_ini_file('.env');
 
-$mail = new PHPMailer(true);
-
 try {
+    $mail = new PHPMailer(true);
+
+    // SMTP config
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
@@ -19,24 +19,57 @@ try {
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
+    $userEmail = $_POST['email'] ?? '';
+    $adminEmail = $dotenv['EMAIL_TO'] ?? '';
+
+    if (!$userEmail) throw new Exception('User email is missing.');
+
+    // -------------------------------
+    // Email to USER (confirmation)
+    // -------------------------------
     $mail->setFrom($dotenv['EMAIL_USER'], 'Website Booking');
-    $mail->addAddress($dotenv['EMAIL_TO']);
-
+    $mail->addAddress($userEmail);
     $mail->isHTML(true);
-    $mail->Subject = 'New Booking Submission';
+    $mail->Subject = 'Booking Confirmation';
 
-    // Build body from POST data
-    $body = '';
-    foreach($_POST as $key => $value){
-        $body .= "<strong>".htmlspecialchars($key).":</strong> " . htmlspecialchars($value) . "<br>";
+    // Friendly summary for user
+    $userBody = "<h2>Thank you for your booking!</h2>";
+    $userBody .= "<p>Hi " . htmlspecialchars($_POST['firstName'] ?? '') . ",</p>";
+    $userBody .= "<p>We received your booking. Here are your important details:</p>";
+    $userBody .= "<ul>";
+    $importantFields = ['homeType', 'serviceType', 'packageName', 'total', 'serviceDate'];
+    foreach ($importantFields as $key) {
+        if (isset($_POST[$key])) {
+            $userBody .= "<li><strong>" . htmlspecialchars($key) . ":</strong> " . htmlspecialchars($_POST[$key]) . "</li>";
+        }
     }
+    $userBody .= "</ul>";
+    $userBody .= "<p>We will contact you shortly. Thank you!</p>";
 
-    $mail->Body = $body;
+    $mail->Body = $userBody;
     $mail->send();
 
-    echo json_encode(['success' => true, 'message' => 'Booking sent!']);
+    // -------------------------------
+    // Email to ADMIN (full details)
+    // -------------------------------
+    if ($adminEmail) {
+        $mail->clearAddresses();
+        $mail->addAddress($adminEmail);
+        $mail->Subject = 'New Booking Received';
+
+        $adminBody = "<h2>New Booking Details</h2>";
+        $adminBody .= "<ul>";
+        foreach ($_POST as $key => $value) {
+            $adminBody .= "<li><strong>" . htmlspecialchars($key) . ":</strong> " . htmlspecialchars($value) . "</li>";
+        }
+        $adminBody .= "</ul>";
+
+        $mail->Body = $adminBody;
+        $mail->send();
+    }
+
+    echo json_encode(['success' => true, 'message' => 'Booking sent successfully!']);
+
 } catch (Exception $e) {
-    // Send JSON even on error
-    echo json_encode(['success' => false, 'message' => $mail->ErrorInfo]);
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
-?>
