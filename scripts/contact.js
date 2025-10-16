@@ -33,6 +33,8 @@ const additionalServices = document.querySelectorAll('#noCleanRooms .additional-
 const frequencyButtons = document.querySelectorAll('.frequency-btn');
 const recurringTotalDiv = document.getElementById('recurringTotalDiv');
 const recurringTotalSpan = document.getElementById('summary-recurring-total');
+const addServices = document.querySelectorAll('.addServices');
+
 
 let selectedTip = 0;
 let packagePrice = 0;
@@ -236,18 +238,6 @@ additionalServices.forEach(service => {
     });
 });
 
-// --- Click on Bed/Bath ---
-additionalServices.forEach(service => {
-    service.addEventListener('click', () => {
-        // Only allow selection if the section is visible
-        if (!noCleanRooms.classList.contains('hidden')) {
-            service.classList.toggle('selected');
-            updateNoCleanSummary();
-        }
-    });
-});
-
-
 // --- Update "No Clean" Summary ---
 function updateNoCleanSummary() {
     let total = 0, text = [];
@@ -291,55 +281,112 @@ function removeNoCleanSummary() {
     if (existing) existing.remove();
 }
 
-// --- Frequency selection ---
 frequencyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Remove selection from others
+        // Remove highlight from others
         frequencyButtons.forEach(b => b.classList.remove('selected', 'bg-blue-100'));
-        // Highlight current
+
+        // Highlight clicked
         btn.classList.add('selected', 'bg-blue-100');
 
-        // Parse discount from text (if any)
+        // Reset discount
+        selectedDiscount = 0;
+
+        // Parse discount from data-value
         const value = btn.getAttribute('data-value');
-        if (value.includes('%')) {
-            const percent = value.match(/(\d+)%/)[1];
-            selectedDiscount = parseInt(percent) / 100;
-        } else {
-            selectedDiscount = 0;
+        const discountMatch = value.match(/(\d+)%/); // extract number before %
+        if (discountMatch) {
+            selectedDiscount = parseInt(discountMatch[1], 10) / 100;
         }
 
-        updateSummary(); // recalc totals
+        updateSummary();
     });
 });
 
-// --- Update total ---
-function updateSummary() {
-    let noClean = 0;
 
-    additionalServices.forEach(service => {
+
+// --- Add Services Click Handler ---
+addServices.forEach(service => {
+    service.addEventListener('click', () => {
+        service.classList.toggle('selected');       // Toggle selection
+        updateSummary();                             // Update main total
+        updateAddServicesSummary();                  // Update services summary
+    });
+});
+
+// --- Update Add Services Summary & Total ---
+function updateAddServicesSummary() {
+    let total = 0;
+
+    // Remove existing summary div first
+    removeAddServicesSummary();
+
+    const selectedServices = addServices.filter
+        ? addServices.filter(service => service.classList.contains('selected'))
+        : Array.from(addServices).filter(service => service.classList.contains('selected'));
+
+    if (selectedServices.length > 0) {
+        const div = document.createElement('div');
+        div.id = 'summary-add-services';
+        div.className = 'flex flex-col gap-1 mt-1 text-gray-600';
+
+        // Title
+        const title = document.createElement('span');
+        title.className = 'font-medium';
+        title.textContent = 'Additional Services:';
+        div.appendChild(title);
+
+        // Each selected service in its own line
+        selectedServices.forEach(service => {
+            const label = service.querySelector('span.font-bold')?.textContent.split(' - ')[0] || '';
+            const price = parseFloat(service.dataset.price) || 0;
+            total += price;
+
+            const line = document.createElement('span');
+            line.className = 'font-semibold';
+            line.textContent = `${label}: $${price}`;
+            div.appendChild(line);
+        });
+
+        // Append after bathrooms summary
+        const halfDiv = document.getElementById('halfBathroomSummaryDiv');
+        halfDiv.after(div);
+    }
+
+    // Update total including add services
+    updateSummary();
+}
+
+// --- Helper to remove old summary ---
+function removeAddServicesSummary() {
+    const existing = document.getElementById('summary-add-services');
+    if (existing) existing.remove();
+}
+
+function updateSummary() {
+    let addServicesTotal = 0;
+    addServices.forEach(service => {
         if (service.classList.contains('selected')) {
-            const icon = service.querySelector('span.material-symbols-outlined').textContent.toLowerCase();
-            if (icon === 'bed') noClean += 10;
-            if (icon === 'shower') noClean += 20;
+            addServicesTotal += parseFloat(service.dataset.price) || 0;
         }
     });
 
-    const subtotal = packagePrice + fullBathroomPrice + halfBathroomPrice - noClean;
+    const subtotal = packagePrice + fullBathroomPrice + halfBathroomPrice + addServicesTotal;
     const tipAmount = subtotal * (selectedTip / 100);
-    const total = subtotal + tipAmount;
+    let total = subtotal + tipAmount;
 
-    summaryTotal.textContent = `$${total.toFixed(2)}`;
-
-    // --- Recurring Total ---
+    // Show discounted amount in recurring total
     if (selectedDiscount > 0) {
-        const discountedTotal = total * (1 - selectedDiscount);
-        recurringTotalSpan.textContent = `$${discountedTotal.toFixed(2)}`;
+        const discountAmount = total * selectedDiscount; // only the discounted part
+        recurringTotalSpan.textContent = `$${discountAmount.toFixed(2)}`;
         recurringTotalDiv.classList.remove('hidden');
     } else {
         recurringTotalDiv.classList.add('hidden');
     }
-}
 
+    // Original total always visible
+    summaryTotal.textContent = `$${total.toFixed(2)}`;
+}
 
 // --- Form Submit ---
 const bookingForm = document.getElementById('bookingForm');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Move In/Out Clean | WIPED</title>
-    <link rel="icon" href="./assets/logo/wiped-logo.png" type="image/webp">
+    <link rel="icon" href="./assets/logo/wiped-logo.webp" type="image/webp">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Material+Symbols+Rounded" rel="stylesheet">
@@ -97,7 +97,7 @@
 
             <!-- CENTER: LOGO -->
             <a href="index.html" class="flex items-center space-x-2 transition-all duration-500">
-                <img id="mainLogo" src="./assets/logo/wiped-logo.png" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
+                <img id="mainLogo" src="./assets/logo/wiped-logo.webp" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
             </a>
 
             <!-- RIGHT: BOOK NOW BUTTON -->
@@ -213,7 +213,7 @@
     <section class="relative pt-36 pb-20">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0">
-            <img src="./assets/hero/move.jpg" alt="Move In/Out Clean Banner" class="w-full h-full object-cover">
+            <img src="./assets/hero/move.webp" alt="Move In/Out Clean Banner" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-blue-600 bg-opacity-50"></div>
         </div>
 
@@ -238,31 +238,33 @@
         </div>
     </section>
 
-    <section class="bg-white py-16 px-6 md:px-16 lg:px-24">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <section class="bg-white py-20 px-6 md:px-16 lg:px-24">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-14">
             
             <!-- LEFT SIDE: IMAGE -->
-            <div class="md:w-1/2">
-                <img src="./assets/services/move-clean.jpg" alt="Move-In/Move-Out Cleaning Service" class="w-full rounded-3xl shadow-lg object-cover">
+            <div class="md:w-1/3 w-full">
+            <img 
+                src="./assets/services/move-clean.jpg" 
+                alt="Move-In/Move-Out Cleaning Service" 
+                class="w-full h-auto rounded-3xl shadow-lg object-cover"
+            >
             </div>
 
             <!-- RIGHT SIDE: TEXT -->
-            <div class="md:w-1/2 space-y-6">
-                <h2 class="text-4xl md:text-5xl font-bold text-blue-700">
-                    Move In and Move Out Cleaning
-                </h2>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    Moving isn’t easy. On top of the endless to-do list, the last thing anyone wants to worry about is cleaning the home.
-                </p>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    A good final clean is an important step whenever a home changes hands. Whether you’re a homeowner who just closed on a house, a renter moving out, or a landlord preparing for new tenants, move in and move out cleaning is a must.
-                </p>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    After a long day of carrying boxes, signing papers, and organizing every detail, letting the professionals at WIPED handle the cleaning will feel like a breath of fresh air.
-                </p>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    We’ll take care of the move in and move out cleaning so you can relax and enjoy a little TLC while the dust from the move settles.
-                </p>
+            <div class="md:w-2/3 w-full text-left space-y-6">
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                Moving isn’t easy. On top of the endless to-do list, the last thing anyone wants to worry about is cleaning the home.
+            </p>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                A good final clean is an important step whenever a home changes hands. Whether you’re a homeowner who just closed on a house, a renter moving out, or a landlord preparing for new tenants, move in and move out cleaning is a must.
+            </p>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                After a long day of carrying boxes, signing papers, and organizing every detail, letting the professionals at 
+                WIPED Cleaning Services handle the cleaning will feel like a breath of fresh air.
+            </p>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                We’ll take care of the move-in and move-out cleaning so you can relax and enjoy a little TLC while the dust from the move settles.
+            </p>
             </div>
         </div>
     </section>
@@ -274,7 +276,7 @@
                 Why Choose Move In and Move Out Cleaning Instead of a Care Cleaning?
             </h2>
             <p class="text-lg md:text-xl text-gray-700 text-center max-w-3xl mx-auto">
-                Move In and Move Out cleaning is the ideal service for homes in transition. It includes everything in a basic or standard cleaning, plus extra touches that are especially important when a home is empty.
+                Move In and Move Out cleaning is the ideal service for homes in transition. It includes everything in a care cleaning, plus extra touches that are especially important when a home is empty.
             </p>
 
             <!-- Cards Grid -->
@@ -382,7 +384,7 @@
 
                     <p class="text-gray-700 text-lg md:text-xl mt-4">
                         These extra touches ensure that your home is thoroughly clean and ready for its next occupants. 
-                        <br><span class="text-gray-500 text-sm">This list updated on April 25th, 2025.</span>
+                        <br><span class="text-gray-500 text-sm">This list updated on June, 2025.</span>
                     </p>
                 </div>
 
@@ -430,26 +432,28 @@
         </div>
     </section>
 
-    <section class="relative bg-blue-600 text-white py-20 px-6">
-        <!-- Background Image with Opacity -->
-        <div class="absolute inset-0">
-            <img src="./assets/banner/cleaning-banner.jpg" alt="Cleaning Banner" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-blue-600/50"></div> <!-- Tailwind 3+ shorthand for opacity -->
-        </div>
+    <!-- banner -->
+   <section class="relative bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800 text-white py-16 px-6 flex items-center justify-center">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-blue-950/70 backdrop-blur-[2px]"></div>
 
-        <!-- Main Content -->
-        <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 animate-fadeInDown">
-                Don’t Wait, Book Your Move In and Move Out Today
-            </h2>
-            <p class="text-lg md:text-2xl mb-8 animate-fadeInUp">
-                Let WIPED handle the mess so you can enjoy a spotless home!
-            </p>
-            <a href="contact.html" 
-            class="inline-flex items-center gap-3 bg-white text-blue-600 font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-center text-center gap-2">
+            
+            <!-- Heading -->
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight drop-shadow-md">
+            <span class="block text-white">Don't Wait, Book Your Home</span>
+            <span class="block text-white">Cleaning Today</span>
+            </h1>
+
+            <!-- Button -->
+            <a href="contact.html" class="md:ml-3 mt-4 md:mt-0">
+            <button class="group flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-cyan-400/50 hover:scale-105 transition-all duration-300">
                 Book Now
-                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+                <span class="material-icons text-white text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </button>
             </a>
+
         </div>
     </section>
 
@@ -536,38 +540,47 @@
                     </p>
                 </div>
 
+                <!-- Other Things -->
                 <div>
-                    <h4 class="text-xl font-semibold text-blue-700">Allow a Few Extra Days for Re-Cleaning</h4>
-                    <p class="text-gray-700 text-lg mt-2">
-                        While rare, there are times a touch up may be needed or unexpected issues arise. Having access a few extra days after your scheduled cleaning ensures we can handle any last-minute needs without stress.
+                    <h4 class="text-xl font-semibold text-blue-700">Other Things</h4>
+                    <p class="text-gray-700 text-lg mt-2 leading-relaxed">
+                        There are a number of things we can’t help with due to a lack of equipment or safety reasons. 
+                        The full list can be found 
+                    <a href="whats-not-included.html" target="_blank" rel="noopener noreferrer" 
+                        class="text-blue-700 font-medium underline hover:text-blue-800 transition-colors duration-200">
+                        Here
+                    </a>.
+                        If you have any questions about what is or is not included, feel free to reach out directly and ask.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="relative bg-blue-600 text-white py-20 px-6">
-        <!-- Background Image with Opacity -->
-        <div class="absolute inset-0">
-            <img src="./assets/banner/cleaning-banner.jpg" alt="Cleaning Banner" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-blue-600/50"></div> <!-- Tailwind 3+ shorthand for opacity -->
-        </div>
+    <section class="relative bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800 text-white py-16 px-6 flex items-center justify-center">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-blue-950/70 backdrop-blur-[2px]"></div>
 
-        <!-- Main Content -->
-        <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 animate-fadeInDown">
-                Don’t Wait, Book Your Move In and Move Out Today
-            </h2>
-            <p class="text-lg md:text-2xl mb-8 animate-fadeInUp">
-                Let WIPED handle the mess so you can enjoy a spotless home!
-            </p>
-            <a href="contact.html" 
-            class="inline-flex items-center gap-3 bg-white text-blue-600 font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-center text-center gap-2">
+            
+            <!-- Heading -->
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight drop-shadow-md">
+            <span class="block text-white">Don't Wait, Book Your Home</span>
+            <span class="block text-white">Cleaning Today</span>
+            </h1>
+
+            <!-- Button -->
+            <a href="contact.html" class="md:ml-3 mt-4 md:mt-0">
+            <button class="group flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-cyan-400/50 hover:scale-105 transition-all duration-300">
                 Book Now
-                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+                <span class="material-icons text-white text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </button>
             </a>
+
         </div>
     </section>
+
 
     <section class="bg-gray-50 py-24 px-8">
         <div class="max-w-6xl mx-auto">
@@ -773,7 +786,7 @@
             <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
                 <!-- LOGO -->
                 <img 
-                    src="./assets/logo/wiped-logo.png" 
+                    src="./assets/logo/wiped-logo.webp" 
                     alt="Cleaning Service Icon" 
                     class="w-36 h-20 mb-5 object-contain"
                 />
@@ -864,7 +877,7 @@
                     </li>
                     <li class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="material-icons text-blue-400">email</span>
-                        <span>admin@wipedcleaningsrvcs.com</span>
+                        <span>admin@wipedcleaningservices.ca</span>
                     </li>
                     <li class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="material-icons text-blue-400">location_on</span>
@@ -937,35 +950,43 @@
 
 
     <script>
-        const menuBtn = document.getElementById('menuButton');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const closeMenu = document.getElementById('closeMenu');
+    document.addEventListener("DOMContentLoaded", () => {
+        // MENU OVERLAY
+        const menuBtn = document.getElementById("menuButton");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const closeMenu = document.getElementById("closeMenu");
 
-        menuBtn.addEventListener('click', () => {
-            menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-            menuOverlay.classList.add('opacity-100');
+        if (menuBtn && menuOverlay && closeMenu) {
+        menuBtn.addEventListener("click", () => {
+            menuOverlay.classList.remove("opacity-0", "pointer-events-none");
+            menuOverlay.classList.add("opacity-100");
         });
 
-        closeMenu.addEventListener('click', () => {
-            menuOverlay.classList.add('opacity-0', 'pointer-events-none');
-            menuOverlay.classList.remove('opacity-100');
+        closeMenu.addEventListener("click", () => {
+            menuOverlay.classList.add("opacity-0", "pointer-events-none");
+            menuOverlay.classList.remove("opacity-100");
         });
-    </script>
+        }
 
-    <!-- SHRINK LOGO ON SCROLL -->
-    <script>
+        // SHRINK LOGO ON SCROLL
         const header = document.getElementById("mainHeader");
         const logo = document.getElementById("mainLogo");
 
+        let lastScrollY = 0;
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-            header.classList.add("backdrop-blur-md", "bg-white/50");
-            logo.classList.replace("h-20", "h-14");
-            } else {
-            header.classList.remove("backdrop-blur-md", "bg-white/50");
-            logo.classList.replace("h-14", "h-20");
-            }
+        const currentY = window.scrollY;
+
+        if (currentY > 50 && lastScrollY <= 50) {
+            header?.classList.add("backdrop-blur-md", "bg-white/50");
+            logo?.classList.replace("h-20", "h-14");
+        } else if (currentY <= 50 && lastScrollY > 50) {
+            header?.classList.remove("backdrop-blur-md", "bg-white/50");
+            logo?.classList.replace("h-14", "h-20");
+        }
+
+        lastScrollY = currentY;
         });
+    });
     </script>
     
 </body>

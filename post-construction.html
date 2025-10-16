@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Construction Clean | WIPED</title>
-    <link rel="icon" href="./assets/logo/wiped-logo.png" type="image/webp">
+    <link rel="icon" href="./assets/logo/wiped-logo.webp" type="image/webp">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Material+Symbols+Rounded" rel="stylesheet">
@@ -97,7 +97,7 @@
 
             <!-- CENTER: LOGO -->
             <a href="index.html" class="flex items-center space-x-2 transition-all duration-500">
-                <img id="mainLogo" src="./assets/logo/wiped-logo.png" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
+                <img id="mainLogo" src="./assets/logo/wiped-logo.webp" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
             </a>
 
             <!-- RIGHT: BOOK NOW BUTTON -->
@@ -205,15 +205,14 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <section class="relative pt-36 pb-20">
+    <section class="bg-gray-50 relative pt-36 pb-20">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0">
-            <img src="./assets/hero/post.jpeg" alt="Post Construction Clean Banner" class="w-full h-full object-cover">
+            <img src="./assets/hero/post.webp" alt="Post Construction Clean Banner" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-blue-600 bg-opacity-50"></div>
         </div>
 
@@ -238,34 +237,36 @@
         </div>
     </section>
 
-    <section class="bg-white py-16 px-6 md:px-16 lg:px-24">
+    <section class="bg-gray-50 py-20 px-6 md:px-16 lg:px-24">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
             
             <!-- LEFT SIDE: IMAGE -->
-            <div class="md:w-1/2">
-                <img src="./assets/services/post-construction.jpg" alt="Post-Construction Cleaning Service" class="w-full rounded-3xl shadow-lg object-cover">
+            <div class="md:w-1/2 flex justify-center">
+            <img 
+                src="./assets/services/post-construction.jpg" 
+                alt="Post-Construction Cleaning Service" 
+                class="w-[90%] max-w-md rounded-3xl shadow-lg object-cover"
+            >
             </div>
 
             <!-- RIGHT SIDE: TEXT -->
-            <div class="md:w-1/2 space-y-6">
-                <h2 class="text-4xl md:text-5xl font-bold text-blue-700">
-                    Post Construction Cleaning
-                </h2>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    Construction is exciting, but it’s also messy. Dust, debris, and tiny details are often left behind, making a brand new space feel unfinished. That’s where post construction cleaning comes in.
-                </p>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    Whether you’re a homeowner ready to move in, a contractor finishing a project, or a landlord preparing for new tenants, our professional cleaning service is the final step to transform your property from a job site to a comfortable, spotless home.
-                </p>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    At WIPED Cleaning Services, we go beyond the surface. Our team takes care of the dust, polishes every corner, and makes sure your new or renovated space is safe, sparkling, and truly ready to enjoy.
-                </p>
-                <p class="text-gray-700 text-lg md:text-xl">
-                    After the hard work of construction, let us handle the cleanup so you can step into your new space stress-free.
-                </p>
+            <div class="md:w-1/2 space-y-6 text-left">
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                Construction is exciting, but it’s also messy. Dust, debris, and tiny details are often left behind, making a brand new space feel unfinished. That’s where post-construction cleaning comes in.
+            </p>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                Whether you’re a homeowner ready to move in, a contractor finishing a project, or a landlord preparing for new tenants, our professional cleaning service is the final step to transform your property from a job site to a comfortable, spotless home.
+            </p>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                At WIPED Cleaning Services, we go beyond the surface. Our team takes care of the dust, polishes every corner, and makes sure your new or renovated space is safe, sparkling, and truly ready to enjoy.
+            </p>
+            <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                After the hard work of construction, let us handle the cleanup so you can step into your new space stress-free.
+            </p>
             </div>
         </div>
     </section>
+
 
     <section class="bg-gray-50 py-16 px-6 md:px-16 lg:px-24">
         <div class="max-w-6xl mx-auto space-y-12">
@@ -387,7 +388,7 @@
 
                     <p class="text-gray-700 text-lg md:text-xl mt-4">
                         These extras ensure that your newly built or renovated home is thoroughly clean, safe, and ready to enjoy. 
-                        <br><span class="text-gray-500 text-sm">This list updated on April 25th, 2025.</span>
+                        <br><span class="text-gray-500 text-sm">This list updated on June, 2025.</span>
                     </p>
                 </div>
                 <div class="md:w-1/2">
@@ -397,31 +398,32 @@
         </div>
     </section>
 
-    <section class="relative bg-blue-600 text-white py-20 px-6">
-        <!-- Background Image with Opacity -->
-        <div class="absolute inset-0">
-            <img src="./assets/banner/cleaning-banner.jpg" alt="Cleaning Banner" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-blue-600/50"></div> <!-- Tailwind 3+ shorthand for opacity -->
-        </div>
+    <section class="relative bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800 text-white py-16 px-6 flex items-center justify-center">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-blue-950/70 backdrop-blur-[2px]"></div>
 
-        <!-- Main Content -->
-        <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 animate-fadeInDown">
-                Don’t Wait, Book Your Post Construction Today
-            </h2>
-            <p class="text-lg md:text-2xl mb-8 animate-fadeInUp">
-                Let WIPED handle the mess so you can enjoy a spotless home!
-            </p>
-            <a href="contact.html" 
-            class="inline-flex items-center gap-3 bg-white text-blue-600 font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-center text-center gap-2">
+            
+            <!-- Heading -->
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight drop-shadow-md">
+            <span class="block text-white">Don't Wait, Book Your Home</span>
+            <span class="block text-white">Cleaning Today</span>
+            </h1>
+
+            <!-- Button -->
+            <a href="contact.html" class="md:ml-3 mt-4 md:mt-0">
+            <button class="group flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-cyan-400/50 hover:scale-105 transition-all duration-300">
                 Book Now
-                <span class="material-symbols-rounded text-lg">arrow_forward</span>
+                <span class="material-icons text-white text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </button>
             </a>
+
         </div>
     </section>
 
     <!-- POST-CONSTRUCTION CLEANING BANNER -->
-    <section class="bg-white text-gray-800 py-24 px-6 md:px-16 lg:px-24">
+    <section class="bg-gray-50 text-gray-800 py-24 px-6 md:px-16 lg:px-24">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-4xl md:text-5xl text-blue-700 font-bold mb-6">
                 Still Have Questions About Post-Construction Cleaning?
@@ -516,17 +518,15 @@
     </section>
 
     <!-- DON’T WAIT BANNER FOR POST-CONSTRUCTION CLEANING WITH ICON -->
-    <section class="bg-white text-gray-900 py-20">
+    <section class="bg-[#f9fafb] text-gray-900 py-20">
         <div class="max-w-6xl mx-auto px-6 md:px-16 lg:px-24 space-y-6">
             <h2 class="text-4xl md:text-5xl font-extrabold text-blue-900 flex items-center gap-3">
-                <span class="material-icons text-blue-700">construction</span>
                 Don’t Wait
             </h2>
             <p class="text-lg md:text-xl">
-                Freshly built or renovated spaces deserve a spotless finish. Let WIPED Cleaning Services handle the dust and details—so all you have to do is enjoy your new space.
+                Freshly built or renovated spaces deserve a spotless finish. Let WIPED Cleaning Services handle the dust and details so all you have to do is enjoy your new space.
             </p>
             <p class="text-lg md:text-xl flex items-center gap-2">
-                <span class="material-icons text-blue-700">phone</span>
                 Call, text, or email us today to book your post-construction clean!
             </p>
             <div class="mt-6">
@@ -548,7 +548,7 @@
             <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
                 <!-- LOGO -->
                 <img 
-                    src="./assets/logo/wiped-logo.png" 
+                    src="./assets/logo/wiped-logo.webp" 
                     alt="Cleaning Service Icon" 
                     class="w-36 h-20 mb-5 object-contain"
                 />
@@ -639,7 +639,7 @@
                     </li>
                     <li class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="material-icons text-blue-400">email</span>
-                        <span>admin@wipedcleaningsrvcs.com</span>
+                        <span>admin@wipedcleaningservices.ca</span>
                     </li>
                     <li class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="material-icons text-blue-400">location_on</span>
@@ -711,35 +711,43 @@
     </a>
 
     <script>
-        const menuButton = document.getElementById('menuButton');
-        const closeMenu = document.getElementById('closeMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
+    document.addEventListener("DOMContentLoaded", () => {
+        // MENU OVERLAY
+        const menuBtn = document.getElementById("menuButton");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const closeMenu = document.getElementById("closeMenu");
 
-        // Show menu instantly
-        menuButton.addEventListener('click', () => {
-            menuOverlay.classList.remove('hidden');
+        if (menuBtn && menuOverlay && closeMenu) {
+        menuBtn.addEventListener("click", () => {
+            menuOverlay.classList.remove("opacity-0", "pointer-events-none");
+            menuOverlay.classList.add("opacity-100");
         });
 
-        // Hide menu instantly
-        closeMenu.addEventListener('click', () => {
-            menuOverlay.classList.add('hidden');
+        closeMenu.addEventListener("click", () => {
+            menuOverlay.classList.add("opacity-0", "pointer-events-none");
+            menuOverlay.classList.remove("opacity-100");
         });
-    </script>
+        }
 
-    <!-- SHRINK LOGO ON SCROLL -->
-    <script>
+        // SHRINK LOGO ON SCROLL
         const header = document.getElementById("mainHeader");
         const logo = document.getElementById("mainLogo");
 
+        let lastScrollY = 0;
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-            header.classList.add("backdrop-blur-md", "bg-white/50");
-            logo.classList.replace("h-20", "h-14");
-            } else {
-            header.classList.remove("backdrop-blur-md", "bg-white/50");
-            logo.classList.replace("h-14", "h-20");
-            }
+        const currentY = window.scrollY;
+
+        if (currentY > 50 && lastScrollY <= 50) {
+            header?.classList.add("backdrop-blur-md", "bg-white/50");
+            logo?.classList.replace("h-20", "h-14");
+        } else if (currentY <= 50 && lastScrollY > 50) {
+            header?.classList.remove("backdrop-blur-md", "bg-white/50");
+            logo?.classList.replace("h-14", "h-20");
+        }
+
+        lastScrollY = currentY;
         });
+    });
     </script>
     
 </body>

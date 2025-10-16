@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts | WIPED</title>
-    <link rel="icon" href="./assets/logo/wiped-logo.png" type="image/webp">
+    <link rel="icon" href="./assets/logo/wiped-logo.webp" type="image/webp">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Material Symbols Outlined -->
@@ -89,6 +89,14 @@
         .selected span.material-symbols-outlined {
         @apply text-blue-400;
         }
+
+        .addServices.selected {
+            border-color: #1D4ED8; /* Blue border */
+            background: linear-gradient(to bottom, #DBEAFE, #BFDBFE); /* Light blue gradient */
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); /* Subtle shadow */
+            transform: translateY(-2px);
+        }
+
     </style>
 </head>
 <body>
@@ -107,7 +115,7 @@
 
             <!-- CENTER: LOGO -->
             <a href="index.html" class="flex items-center space-x-2 transition-all duration-500">
-                <img id="mainLogo" src="./assets/logo/wiped-logo.png" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
+                <img id="mainLogo" src="./assets/logo/wiped-logo.webp" alt="Wiped Logo" class="h-20 w-auto object-contain transition-all duration-500">
             </a>
 
             <!-- RIGHT: BOOK NOW BUTTON -->
@@ -124,8 +132,11 @@
     </header>
 
     <!-- OVERLAY MENU -->
-    <div id="menuOverlay" class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-start opacity-0 pointer-events-none transition-opacity duration-200 z-[9999] overflow-y-auto">
-        <!-- CLOSE BUTTON -->
+    <div id="menuOverlay"
+  class="fixed inset-0 bg-blue-950 text-white flex flex-col items-center justify-start 
+         opacity-0 pointer-events-none transition-opacity duration-200 ease-out 
+         z-[9999] overflow-y-auto will-change-[opacity,transform]">
+             <!-- CLOSE BUTTON -->
         <button id="closeMenu" class="absolute top-6 right-8 text-white hover:text-blue-400 transition">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -223,7 +234,7 @@
     <section class="relative pt-36 pb-20">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0">
-            <img src="./assets/hero/contact.jpg" alt="Move In/Out Clean Banner" class="w-full h-full object-cover">
+            <img src="./assets/hero/contact.webp" alt="Move In/Out Clean Banner" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-blue-600 bg-opacity-50"></div>
         </div>
 
@@ -361,6 +372,121 @@
                     </div>
                 </div>
 
+                
+                <!--  Additional Services -->
+                <div class="md:col-span-2 mt-6">
+                <h3 class="text-xl font-semibold mb-4 text-blue-800 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-blue-800">build</span>
+                    Additional Services
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <div
+                        class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                        data-price="25"
+                        >
+                        <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">
+                            kitchen
+                        </span>
+                        <span class="font-bold text-base text-gray-800 group-hover:text-black">
+                            Empty Kitchen Cabinet
+                        </span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="25">
+                        <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">icecream</span>
+                        <span class="font-bold text-base text-gray-800 group-hover:text-black">Empty Fridge</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="35">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">inventory</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Full Stocked Fridge</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="40">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">local_laundry_service</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Load & Fold Laundry</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="15">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">garage</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Garage Sweep/Vacuum</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="15">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">bed</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Bedsheet Change</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="20">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">checkroom</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Laundry Fold (no wash)</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="55">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">format_paint</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Wall Wash</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="15">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">pets</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Pet</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="15">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">meeting_room</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Additional Room</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="35">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">foundation</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Finished Basement</span>
+                    </div>
+
+                    <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
+                                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
+                                bg-gradient-to-b from-gray-100 to-white"
+                            data-price="35">
+                    <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">window</span>
+                    <span class="font-bold text-base text-gray-800 group-hover:text-black">Blinds Wet Wiping</span>
+                    </div>
+                 </div>
+
+                </div> 
+
                 <div class="md:col-span-2 mt-6">
                     <!-- Checkbox -->
                     <label class="flex items-center gap-2 mb-4 cursor-pointer">
@@ -387,44 +513,16 @@
                     </div>
                 </div>
 
-
-                <!-- Frequency Options -->
-                <div id="frequency-options" class="md:col-span-2 mt-6">
-                    <h3 class="text-xl font-semibold mb-4 text-blue-800 text-left">How Often is this service wanted?</h3>
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div data-value="One Time" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
-                            One Time
-                        </div>
-                        <div data-value="Every 4 Weeks 15% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
-                            Every 4 Weeks <span class="text-green-600 font-semibold">15% Off</span>
-                        </div>
-                        <div data-value="Every 2 Weeks 30% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
-                            Every 2 Weeks <span class="text-green-600 font-semibold">30% Off</span>
-                        </div>
-                        <div data-value="Every Week 40% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
-                            Every Week <span class="text-green-600 font-semibold">40% Off</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Address Details -->
                 <div class="md:col-span-2 mt-6">
                     <h3 class="text-xl font-semibold mb-4 text-blue-800">Address Details</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Address *" class="border p-3 rounded-lg w-full">
-                        <input type="text" placeholder="Unit" class="border p-3 rounded-lg w-full">
+                        <input type="text" placeholder="Unit " class="border p-3 rounded-lg w-full">
+                        <input type="text" placeholder="Street *" class="border p-3 rounded-lg w-full">
                         <input type="text" placeholder="City *" class="border p-3 rounded-lg w-full">
                         <input type="text" placeholder="Province *" class="border p-3 rounded-lg w-full">
                         <input type="text" placeholder="Zipcode *" class="border p-3 rounded-lg w-full">
                         <div class="relative w-full">
-                        <input
-                            type="text"
-                            placeholder="Address Note"
-                            class="border p-3 pl-10 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none"
-                        >
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                            info
-                        </span>
                         </div>
                     </div>
                 </div>
@@ -479,49 +577,21 @@
 
                 <!-- Frequency Options -->
                 <div id="frequency-options" class="md:col-span-2 mt-6">
-                <h3 class="text-xl font-semibold mb-4 text-blue-800 text-left">How Often?</h3>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1">
-                    <!-- One Time -->
-                    <div>
-                    <input type="radio" name="frequency" id="one-time" value="One Time" class="peer hidden">
-                    <label for="one-time" 
-                            class="cursor-pointer px-5 py-2 rounded-[5px] border border-gray-300 
-                                    bg-gray-50 hover:bg-gray-100 text-gray-700 
-                                    peer-checked:bg-blue-500 peer-checked:text-white 
-                                    transition-all duration-200 ease-in-out text-center">One Time</label>
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800 text-left">How Often is this service wanted?</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div data-value="One Time" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            One Time
+                        </div>
+                        <div data-value="Every 4 Weeks 15% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            Every 4 Weeks <span class="text-green-600 font-semibold">15% Off</span>
+                        </div>
+                        <div data-value="Every 2 Weeks 30% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            Every 2 Weeks <span class="text-green-600 font-semibold">30% Off</span>
+                        </div>
+                        <div data-value="Every Week 40% Off" class="frequency-btn border border-gray-300 rounded-lg p-3 cursor-pointer text-center hover:bg-blue-50 transition-all duration-200">
+                            Every Week <span class="text-green-600 font-semibold">40% Off</span>
+                        </div>
                     </div>
-
-                    <!-- Weekly -->
-                    <div>
-                    <input type="radio" name="frequency" id="weekly" value="Weekly" class="peer hidden">
-                    <label for="weekly" 
-                            class="cursor-pointer px-5 py-2 rounded-[5px] border border-gray-300 
-                                    bg-gray-50 hover:bg-green-100 text-gray-700 
-                                    peer-checked:bg-blue-500 peer-checked:text-white 
-                                    transition-all duration-200 ease-in-out text-center">Weekly</label>
-                    </div>
-
-                    <!-- Biweekly -->
-                    <div>
-                    <input type="radio" name="frequency" id="biweekly" value="Biweekly" class="peer hidden">
-                    <label for="biweekly" 
-                            class="cursor-pointer px-5 py-2 rounded-[5px] border border-gray-300 
-                                    bg-gray-50 hover:bg-orange-100 text-gray-700 
-                                    peer-checked:bg-blue-500 peer-checked:text-white 
-                                    transition-all duration-200 ease-in-out text-center">Biweekly</label>
-                    </div>
-
-                    <!-- Monthly -->
-                    <div>
-                    <input type="radio" name="frequency" id="monthly" value="Monthly" class="peer hidden">
-                    <label for="monthly" 
-                            class="cursor-pointer px-5 py-2 rounded-[5px] border border-gray-300 
-                                    bg-gray-50 hover:bg-purple-100 text-gray-700 
-                                    peer-checked:bg-blue-500 peer-checked:text-white 
-                                    transition-all duration-200 ease-in-out text-center">Monthly</label>
-                    </div>
-                </div>
                 </div>
 
                 <!-- Tips (100% Optional) -->
@@ -619,15 +689,6 @@
                             <span id="summary-date" class="text-gray-600 font-semibold"></span>
                         </div>
 
-                        <!-- How Often -->
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="material-icons text-orange-500">repeat</span>
-                                <span class="font-medium text-gray-800">How Often:</span>
-                            </div>
-                            <span id="summary-frequency" class="text-gray-600 font-semibold"></span>
-                        </div>
-
                         <!-- Additional Info: Payment Method & Tip -->
                         <div id="summary-additional" class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 text-sm">
                             <p id="summary-payment-method">Payment Method: -</p>
@@ -661,7 +722,7 @@
             <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
                 <!-- LOGO -->
                 <img 
-                    src="./assets/logo/wiped-logo.png" 
+                    src="./assets/logo/wiped-logo.webp" 
                     alt="Cleaning Service Icon" 
                     class="w-36 h-20 mb-5 object-contain"
                 />
@@ -752,7 +813,7 @@
                     </li>
                     <li class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="material-icons text-blue-400">email</span>
-                        <span>admin@wipedcleaningsrvcs.com</span>
+                        <span>admin@wipedcleaningservices.ca</span>
                     </li>
                     <li class="flex items-center justify-center sm:justify-start gap-2">
                         <span class="material-icons text-blue-400">location_on</span>
@@ -823,38 +884,46 @@
         <span class="material-icons">call</span>
     </a>
 
-
     <script>
-        const menuBtn = document.getElementById('menuButton');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const closeMenu = document.getElementById('closeMenu');
+    document.addEventListener("DOMContentLoaded", () => {
+        // MENU OVERLAY
+        const menuBtn = document.getElementById("menuButton");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const closeMenu = document.getElementById("closeMenu");
 
-        menuBtn.addEventListener('click', () => {
-            menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-            menuOverlay.classList.add('opacity-100');
+        if (menuBtn && menuOverlay && closeMenu) {
+        menuBtn.addEventListener("click", () => {
+            menuOverlay.classList.remove("opacity-0", "pointer-events-none");
+            menuOverlay.classList.add("opacity-100");
         });
 
-        closeMenu.addEventListener('click', () => {
-            menuOverlay.classList.add('opacity-0', 'pointer-events-none');
-            menuOverlay.classList.remove('opacity-100');
+        closeMenu.addEventListener("click", () => {
+            menuOverlay.classList.add("opacity-0", "pointer-events-none");
+            menuOverlay.classList.remove("opacity-100");
         });
-    </script>
+        }
 
-    <!-- SHRINK LOGO ON SCROLL -->
-    <script>
+        // SHRINK LOGO ON SCROLL
         const header = document.getElementById("mainHeader");
         const logo = document.getElementById("mainLogo");
 
+        let lastScrollY = 0;
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-            header.classList.add("backdrop-blur-md", "bg-white/50");
-            logo.classList.replace("h-20", "h-14");
-            } else {
-            header.classList.remove("backdrop-blur-md", "bg-white/50");
-            logo.classList.replace("h-14", "h-20");
-            }
+        const currentY = window.scrollY;
+
+        if (currentY > 50 && lastScrollY <= 50) {
+            header?.classList.add("backdrop-blur-md", "bg-white/50");
+            logo?.classList.replace("h-20", "h-14");
+        } else if (currentY <= 50 && lastScrollY > 50) {
+            header?.classList.remove("backdrop-blur-md", "bg-white/50");
+            logo?.classList.replace("h-14", "h-20");
+        }
+
+        lastScrollY = currentY;
         });
+    });
     </script>
+
 
     <script src="./scripts/contact.js"></script>
     
