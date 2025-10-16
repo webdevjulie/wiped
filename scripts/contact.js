@@ -214,33 +214,91 @@ function updateBathroomSummary() {
     updateSummary();
 }
 
-// --- Checkbox toggle ---
+// --- Toggle visibility ---
 noCleanCheckbox.addEventListener('change', () => {
-    const checked = noCleanCheckbox.checked;
-    noCleanRooms.classList.toggle('hidden', !checked);
-
-    if (!checked) {
-        // Clear previous selections
-        additionalServices.forEach(service => service.classList.remove('selected'));
-        removeNoCleanSummary();
-        updateSummary();
-    }
+    noCleanRooms.classList.toggle('hidden', !noCleanCheckbox.checked);
 });
 
-// --- Click Bed/Bath ---
+// --- Click Bed/Bath cards ---
 additionalServices.forEach(service => {
-    service.addEventListener('click', () => {
-        // Only allow selection if the section is visible
-        if (!noCleanRooms.classList.contains('hidden')) {
-            service.classList.toggle('selected');
-            updateNoCleanSummary();
+    const minusBtn = service.querySelector('.minus-btn');
+    const plusBtn = service.querySelector('.plus-btn');
+    const quantityDisplay = service.querySelector('.quantity');
+
+    console.log('Setting up service:', service); // DEBUG
+
+    service.addEventListener('click', (e) => {
+        console.log('Card clicked!', e.target); // DEBUG
+        
+        // Ignore clicks on +/− buttons
+        if (e.target.classList.contains('plus-btn') || 
+            e.target.classList.contains('minus-btn') ||
+            e.target.closest('.minus-btn') || 
+            e.target.closest('.plus-btn')) {
+            console.log('Ignoring button click'); // DEBUG
+            return;
         }
+
+        // Toggle selection
+        const isSelected = service.classList.toggle('selected');
+        console.log('Is selected:', isSelected); // DEBUG
+
+        if (isSelected) {
+            service.classList.add('ring-4', 'ring-blue-400', 'bg-blue-50');
+            if (quantityDisplay.textContent === '0') {
+                quantityDisplay.textContent = '1';
+            }
+        } else {
+            service.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-50');
+            quantityDisplay.textContent = '0';
+        }
+
+        console.log('Calling updateNoCleanSummary'); // DEBUG
+        updateNoCleanSummary();
     });
+
+    // Plus button
+    if (plusBtn) {
+        plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('Plus clicked'); // DEBUG
+            
+            // Remove "selected" requirement - just increment if card is active
+            const currentQty = parseInt(quantityDisplay.textContent) || 0;
+            quantityDisplay.textContent = currentQty + 1;
+            
+            // Auto-select if not selected
+            if (!service.classList.contains('selected')) {
+                service.classList.add('selected', 'ring-4', 'ring-blue-400', 'bg-blue-50');
+            }
+            
+            updateNoCleanSummary();
+        });
+    }
+
+    // Minus button
+    if (minusBtn) {
+        minusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('Minus clicked'); // DEBUG
+            
+            const currentQty = parseInt(quantityDisplay.textContent) || 0;
+            
+            if (currentQty > 1) {
+                quantityDisplay.textContent = currentQty - 1;
+            } else if (currentQty === 1) {
+                quantityDisplay.textContent = '0';
+                service.classList.remove('selected', 'ring-4', 'ring-blue-400', 'bg-blue-50');
+            }
+            updateNoCleanSummary();
+        });
+    }
 });
 
 // --- Update "No Clean" Summary ---
 function updateNoCleanSummary() {
-    let total = 0, text = [];
+    let totalNoClean = 0;
+    let text = [];
 
     additionalServices.forEach(service => {
         if (service.classList.contains('selected')) {
@@ -256,14 +314,19 @@ function updateNoCleanSummary() {
                 label = 'Bath (or other Wet Room)';
             }
 
-            total += price;
-            text.push(`${label}: $${price}`);
+            totalNoClean += price;
+            text.push(`${label}: -$${price}`);
         }
     });
 
+    // Store total for use in updateSummary()
+    window.noCleanTotal = totalNoClean;
+
+    // Remove previous summary line
     removeNoCleanSummary();
 
-    if (total > 0) {
+    // Add new one if there are excluded rooms
+    if (totalNoClean > 0) {
         const div = document.createElement('div');
         div.id = 'summary-no-clean';
         div.className = 'flex items-center gap-2 mt-1 flex-wrap text-red-600';
@@ -272,6 +335,7 @@ function updateNoCleanSummary() {
         halfDiv.after(div);
     }
 
+    // Update total calculation
     updateSummary();
 }
 
@@ -280,6 +344,7 @@ function removeNoCleanSummary() {
     const existing = document.getElementById('summary-no-clean');
     if (existing) existing.remove();
 }
+
 
 frequencyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -303,90 +368,175 @@ frequencyButtons.forEach(btn => {
     });
 });
 
-
-
-// --- Add Services Click Handler ---
 addServices.forEach(service => {
-    service.addEventListener('click', () => {
-        service.classList.toggle('selected');       // Toggle selection
-        updateSummary();                             // Update main total
-        updateAddServicesSummary();                  // Update services summary
+    const minusBtn = service.querySelector('.minus-btn');
+    const plusBtn = service.querySelector('.plus-btn');
+    const quantityDisplay = service.querySelector('.quantity');
+    const quantityControls = service.querySelector('.flex.items-center.gap-4'); // +/- container
+
+    let quantity = 0;
+    const price = parseFloat(service.dataset.price) || 0;
+
+    // Hide quantity buttons initially if they exist
+    if (quantityControls) quantityControls.style.display = 'none';
+
+    // --- Click on the card ---
+    service.addEventListener('click', (e) => {
+        // Ignore clicks on +/- buttons
+        if (e.target.classList.contains('plus-btn') || e.target.classList.contains('minus-btn')) return;
+
+        service.classList.toggle('selected');
+        const isSelected = service.classList.contains('selected');
+
+        if (isSelected) {
+            // Show quantity controls if exist
+            if (quantityControls) quantityControls.style.display = 'flex';
+
+            // If no quantity yet, start with 1
+            quantity = quantity === 0 ? 1 : quantity;
+
+            if (quantityDisplay) quantityDisplay.textContent = quantity;
+        } else {
+            // Hide and reset
+            if (quantityControls) quantityControls.style.display = 'none';
+            quantity = 0;
+            if (quantityDisplay) quantityDisplay.textContent = quantity;
+        }
+
+        // Save to dataset
+        service.dataset.quantity = quantity;
+
+        updateAddServicesSummary();
     });
+
+    // --- Plus button ---
+    if (plusBtn) {
+        plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            quantity++;
+            if (quantityDisplay) quantityDisplay.textContent = quantity;
+            service.dataset.quantity = quantity;
+            if (!service.classList.contains('selected')) {
+                service.classList.add('selected');
+                if (quantityControls) quantityControls.style.display = 'flex';
+            }
+            updateAddServicesSummary();
+        });
+    }
+
+    // --- Minus button ---
+    if (minusBtn) {
+        minusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (quantity > 1) {
+                quantity--;
+            } else {
+                quantity = 0;
+                service.classList.remove('selected');
+                if (quantityControls) quantityControls.style.display = 'none';
+            }
+            if (quantityDisplay) quantityDisplay.textContent = quantity;
+            service.dataset.quantity = quantity;
+            updateAddServicesSummary();
+        });
+    }
+
+    // Initialize dataset quantity
+    service.dataset.quantity = quantity;
 });
+
+// --- Helper: Remove old summary ---
+function removeAddServicesSummary() {
+    const existing = document.getElementById('summary-add-services');
+    if (existing) existing.remove();
+}
 
 // --- Update Add Services Summary & Total ---
 function updateAddServicesSummary() {
-    let total = 0;
-
-    // Remove existing summary div first
     removeAddServicesSummary();
 
-    const selectedServices = addServices.filter
-        ? addServices.filter(service => service.classList.contains('selected'))
-        : Array.from(addServices).filter(service => service.classList.contains('selected'));
+    let total = 0;
+    const selectedServices = Array.from(addServices).filter(s => s.classList.contains('selected'));
 
     if (selectedServices.length > 0) {
         const div = document.createElement('div');
         div.id = 'summary-add-services';
         div.className = 'flex flex-col gap-1 mt-1 text-gray-600';
 
-        // Title
         const title = document.createElement('span');
         title.className = 'font-medium';
         title.textContent = 'Additional Services:';
         div.appendChild(title);
 
-        // Each selected service in its own line
         selectedServices.forEach(service => {
-            const label = service.querySelector('span.font-bold')?.textContent.split(' - ')[0] || '';
+            const label = service.querySelector('span.font-bold')?.textContent || '';
             const price = parseFloat(service.dataset.price) || 0;
-            total += price;
+            const quantity = parseInt(service.dataset.quantity || '1');
+            const subtotal = price * quantity;
+            total += subtotal;
 
             const line = document.createElement('span');
             line.className = 'font-semibold';
-            line.textContent = `${label}: $${price}`;
+
+            if (service.querySelector('.quantity')) {
+                line.textContent = `${label} × ${quantity} = $${subtotal}`;
+            } else {
+                line.textContent = `${label} = $${subtotal}`;
+            }
+
             div.appendChild(line);
         });
 
-        // Append after bathrooms summary
         const halfDiv = document.getElementById('halfBathroomSummaryDiv');
-        halfDiv.after(div);
+        if (halfDiv) halfDiv.after(div);
     }
 
-    // Update total including add services
+    // Pass to updateSummary for overall total computation
+    window.addServicesTotal = total; // ✅ make accessible globally
     updateSummary();
 }
 
-// --- Helper to remove old summary ---
-function removeAddServicesSummary() {
-    const existing = document.getElementById('summary-add-services');
-    if (existing) existing.remove();
-}
 
+// --- Update Total Summary ---
 function updateSummary() {
-    let addServicesTotal = 0;
-    addServices.forEach(service => {
-        if (service.classList.contains('selected')) {
-            addServicesTotal += parseFloat(service.dataset.price) || 0;
-        }
-    });
+    // ✅ Use global addServicesTotal if set (from updateAddServicesSummary)
+    let addServicesTotal = window.addServicesTotal || 0;
 
+    // ✅ Safety net: if not yet calculated, compute manually
+    if (addServicesTotal === 0) {
+        addServices.forEach(service => {
+            if (service.classList.contains('selected')) {
+                const price = parseFloat(service.dataset.price) || 0;
+                const quantity =
+                    parseInt(service.dataset.quantity || service.querySelector('.quantity')?.textContent || '0');
+                addServicesTotal += price * quantity;
+            }
+        });
+    }
+
+    // ✅ Compute subtotal (main package + bathrooms + add-ons)
     const subtotal = packagePrice + fullBathroomPrice + halfBathroomPrice + addServicesTotal;
-    const tipAmount = subtotal * (selectedTip / 100);
-    let total = subtotal + tipAmount;
 
-    // Show discounted amount in recurring total
+    // ✅ Subtract "No Clean" total (if any)
+    const totalAfterNoClean = subtotal - (window.noCleanTotal || 0);
+
+    // ✅ Add tip
+    const tipAmount = totalAfterNoClean * (selectedTip / 100);
+    let total = totalAfterNoClean + tipAmount;
+
+    // ✅ Apply discount if any
     if (selectedDiscount > 0) {
-        const discountAmount = total * selectedDiscount; // only the discounted part
+        const discountAmount = total * selectedDiscount;
         recurringTotalSpan.textContent = `$${discountAmount.toFixed(2)}`;
         recurringTotalDiv.classList.remove('hidden');
     } else {
         recurringTotalDiv.classList.add('hidden');
     }
 
-    // Original total always visible
+    // ✅ Update main total display
     summaryTotal.textContent = `$${total.toFixed(2)}`;
 }
+
 
 // --- Form Submit ---
 const bookingForm = document.getElementById('bookingForm');

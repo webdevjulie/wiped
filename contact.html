@@ -402,6 +402,13 @@
                             data-price="25">
                         <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">icecream</span>
                         <span class="font-bold text-base text-gray-800 group-hover:text-black">Empty Fridge</span>
+                    
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
+                        </div>
                     </div>
 
                     <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
@@ -410,6 +417,13 @@
                             data-price="35">
                     <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">inventory</span>
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Full Stocked Fridge</span>
+                    
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
+                        </div>
                     </div>
 
                     <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
@@ -434,6 +448,13 @@
                             data-price="15">
                     <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">bed</span>
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Bedsheet Change</span>
+                    
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
+                        </div>
                     </div>
 
                     <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
@@ -458,6 +479,13 @@
                             data-price="15">
                     <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">pets</span>
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Pet</span>
+                    
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
+                        </div>
                     </div>
 
                     <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
@@ -466,6 +494,13 @@
                             data-price="15">
                     <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">meeting_room</span>
                     <span class="font-bold text-base text-gray-800 group-hover:text-black">Additional Room</span>
+                    
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
+                        </div>
                     </div>
 
                     <div class="addServices group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer 
@@ -496,20 +531,39 @@
 
                     <!-- Hidden by default -->
                     <div id="noCleanRooms" class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+
+                        <!-- Bed -->
                         <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                     hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                     bg-gradient-to-b from-gray-100 to-white"
-                            data-price="10">
-                            <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">bed</span>
-                            <span class="font-bold text-base text-gray-800 group-hover:text-black">Bed (Office, or Dry Room)</span>
+                        data-price="10">
+                        <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">bed</span>
+                        <span class="font-bold text-base text-gray-800 group-hover:text-black">Bed (Office, or Dry Room)</span>
+
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
                         </div>
+                        </div>
+
+                        <!-- Bath -->
                         <div class="additional-service group border border-gray-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer 
                                     hover:shadow-lg hover:-translate-y-1 transition-all duration-300 
                                     bg-gradient-to-b from-gray-100 to-white"
-                            data-price="20">
-                            <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">shower</span>
-                            <span class="font-bold text-base text-gray-800 group-hover:text-black">Bath (or other Wet Room)</span>
+                        data-price="20">
+                        <span class="material-symbols-outlined text-6xl mb-2 text-gray-700 group-hover:text-black transition-all">shower</span>
+                        <span class="font-bold text-base text-gray-800 group-hover:text-black">Bath (or other Wet Room)</span>
+
+                        <!-- Quantity buttons -->
+                        <div class="flex items-center gap-4 mt-4">
+                            <button class="minus-btn bg-gray-200 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-gray-300 transition">−</button>
+                            <span class="quantity text-lg font-semibold text-gray-800">0</span>
+                            <button class="plus-btn bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition">+</button>
                         </div>
+                        </div>
+
                     </div>
                 </div>
 
