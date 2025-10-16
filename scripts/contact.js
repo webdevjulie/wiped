@@ -89,9 +89,13 @@ homeTypes.forEach(type => {
         else if (type.dataset.type === 'townhouse') type.classList.add('border-pink-500');
         else if (type.dataset.type === 'apartment') type.classList.add('border-green-500');
 
-        // ✅ Update summary (only the name, not the icon)
-        summaryHomeType.textContent = type.querySelector('.font-semibold')?.textContent.trim() || '-';
-        homeTypeSummaryDiv.classList.remove('hidden');
+        // Update summary (only the name, not the icon)
+        if (summaryHomeType) {
+            summaryHomeType.textContent = type.querySelector('.font-semibold')?.textContent.trim() || '-';
+        }
+        if (homeTypeSummaryDiv) {
+            homeTypeSummaryDiv.classList.remove('hidden');
+        }
 
         updateSummary();
     });
@@ -111,7 +115,9 @@ halfBathroomSelect.addEventListener('change', () => {
 // --- Service Type ---
 serviceType.addEventListener('change', () => {
     const selectedService = serviceType.value;
-    summaryService.textContent = serviceType.options[serviceType.selectedIndex].text;
+    if (summaryService) {
+        summaryService.textContent = serviceType.options[serviceType.selectedIndex].text;
+    }
 
     packageSelect.innerHTML = '<option value="" disabled selected>Select a Package</option>';
     if (packages[selectedService]) {
@@ -136,23 +142,31 @@ const summaryPackage = document.getElementById('summary-package');
 packageSelect.addEventListener('change', () => {
     const selectedOption = packageSelect.options[packageSelect.selectedIndex];
     packagePrice = parseFloat(selectedOption.value) || 0;
-    summaryPackage.textContent = selectedOption.text;
-    packageSummaryDiv.classList.remove('hidden');
+    if (summaryPackage) {
+        summaryPackage.textContent = selectedOption.text;
+    }
+    if (packageSummaryDiv) {
+        packageSummaryDiv.classList.remove('hidden');
+    }
     updateSummary();
 });
 
 // --- Service Date ---
 serviceDate.addEventListener('change', () => {
-    summaryDate.textContent = serviceDate.value
-        ? new Date(serviceDate.value).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
-        : '-';
+    if (summaryDate) {
+        summaryDate.textContent = serviceDate.value
+            ? new Date(serviceDate.value).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+            : '-';
+    }
 });
 
 // --- Frequency ---
 frequencyRadios.forEach(radio => {
     radio.addEventListener('change', () => {
-        summaryFrequency.textContent =
-            radio.value.charAt(0).toUpperCase() + radio.value.slice(1).replace('-', ' ');
+        if (summaryFrequency) {
+            summaryFrequency.textContent =
+                radio.value.charAt(0).toUpperCase() + radio.value.slice(1).replace('-', ' ');
+        }
     });
 });
 
@@ -162,7 +176,10 @@ paymentOptions.forEach(option => {
         paymentOptions.forEach(o => o.classList.remove('bg-blue-200', 'border-blue-500', 'font-semibold'));
         option.classList.add('bg-blue-200', 'border-blue-500', 'font-semibold');
         const selectedPayment = option.getAttribute('data-value') || '';
-        summaryPayment.textContent = `Payment Method: ${selectedPayment}`;
+        
+        if (summaryPayment) {
+            summaryPayment.textContent = `Payment Method: ${selectedPayment}`;
+        }
 
         const existingNote = document.getElementById('eTransferNote');
         if (existingNote) existingNote.remove();
@@ -173,7 +190,9 @@ paymentOptions.forEach(option => {
             noteDiv.className = 'mt-1 text-sm text-gray-600 font-medium';
             noteDiv.textContent =
                 'Please send your E-Transfer after the cleaning is completed to: admin@wipedcleaningsrvcs.com';
-            summaryPayment.after(noteDiv);
+            if (summaryPayment) {
+                summaryPayment.after(noteDiv);
+            }
         }
     });
 });
@@ -182,7 +201,9 @@ paymentOptions.forEach(option => {
 tipRadios.forEach(radio => {
     radio.addEventListener('change', () => {
         selectedTip = parseInt(radio.value) || 0;
-        summaryTip.textContent = `Tip: ${selectedTip}%`;
+        if (summaryTip) {
+            summaryTip.textContent = `Tip: ${selectedTip}%`;
+        }
         updateSummary();
     });
 });
@@ -207,17 +228,25 @@ additionalServices.forEach(service => {
 
 // --- Bathroom Summary ---
 function updateBathroomSummary() {
-    document.getElementById('summary-full-bathroom-price').textContent = `$${fullBathroomPrice.toFixed(2)}`;
-    document.getElementById('summary-half-bathroom-price').textContent = `$${halfBathroomPrice.toFixed(2)}`;
-    fullBathroomPrice > 0 ? fullDiv.classList.remove('hidden') : fullDiv.classList.add('hidden');
-    halfBathroomPrice > 0 ? halfDiv.classList.remove('hidden') : halfDiv.classList.add('hidden');
+    const fullPriceElem = document.getElementById('summary-full-bathroom-price');
+    const halfPriceElem = document.getElementById('summary-half-bathroom-price');
+    
+    if (fullPriceElem) {
+        fullPriceElem.textContent = `$${fullBathroomPrice.toFixed(2)}`;
+    }
+    if (halfPriceElem) {
+        halfPriceElem.textContent = `$${halfBathroomPrice.toFixed(2)}`;
+    }
+    
+    if (fullDiv) {
+        fullBathroomPrice > 0 ? fullDiv.classList.remove('hidden') : fullDiv.classList.add('hidden');
+    }
+    if (halfDiv) {
+        halfBathroomPrice > 0 ? halfDiv.classList.remove('hidden') : halfDiv.classList.add('hidden');
+    }
+    
     updateSummary();
 }
-
-// --- Toggle visibility ---
-noCleanCheckbox.addEventListener('change', () => {
-    noCleanRooms.classList.toggle('hidden', !noCleanCheckbox.checked);
-});
 
 // --- Click Bed/Bath cards ---
 additionalServices.forEach(service => {
@@ -225,35 +254,30 @@ additionalServices.forEach(service => {
     const plusBtn = service.querySelector('.plus-btn');
     const quantityDisplay = service.querySelector('.quantity');
 
-    console.log('Setting up service:', service); // DEBUG
-
     service.addEventListener('click', (e) => {
-        console.log('Card clicked!', e.target); // DEBUG
-        
         // Ignore clicks on +/− buttons
         if (e.target.classList.contains('plus-btn') || 
             e.target.classList.contains('minus-btn') ||
             e.target.closest('.minus-btn') || 
             e.target.closest('.plus-btn')) {
-            console.log('Ignoring button click'); // DEBUG
             return;
         }
 
         // Toggle selection
         const isSelected = service.classList.toggle('selected');
-        console.log('Is selected:', isSelected); // DEBUG
 
         if (isSelected) {
             service.classList.add('ring-4', 'ring-blue-400', 'bg-blue-50');
-            if (quantityDisplay.textContent === '0') {
+            if (quantityDisplay && quantityDisplay.textContent === '0') {
                 quantityDisplay.textContent = '1';
             }
         } else {
             service.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-50');
-            quantityDisplay.textContent = '0';
+            if (quantityDisplay) {
+                quantityDisplay.textContent = '0';
+            }
         }
 
-        console.log('Calling updateNoCleanSummary'); // DEBUG
         updateNoCleanSummary();
     });
 
@@ -263,7 +287,6 @@ additionalServices.forEach(service => {
             e.preventDefault();
             e.stopPropagation();
             
-            // Remove "selected" requirement - just increment if card is active
             const currentQty = parseInt(quantityDisplay.textContent) || 0;
             quantityDisplay.textContent = currentQty + 1;
             
@@ -330,7 +353,7 @@ function updateNoCleanSummary() {
     removeNoCleanSummary();
 
     // Add new one if there are excluded rooms
-    if (totalNoClean > 0) {
+    if (totalNoClean > 0 && halfDiv) {
         const div = document.createElement('div');
         div.id = 'summary-no-clean';
         div.className = 'flex items-center gap-2 mt-1 flex-wrap text-red-600';
@@ -465,7 +488,7 @@ function updateAddServicesSummary() {
     let total = 0;
     const selectedServices = Array.from(addServices).filter(s => s.classList.contains('selected'));
 
-    if (selectedServices.length > 0) {
+    if (selectedServices.length > 0 && halfDiv) {
         const div = document.createElement('div');
         div.id = 'summary-add-services';
         div.className = 'flex flex-col gap-1 mt-1 text-gray-600';
@@ -494,22 +517,20 @@ function updateAddServicesSummary() {
             div.appendChild(line);
         });
 
-        const halfDiv = document.getElementById('halfBathroomSummaryDiv');
-        if (halfDiv) halfDiv.after(div);
+        halfDiv.after(div);
     }
 
     // Pass to updateSummary for overall total computation
-    window.addServicesTotal = total; // ✅ make accessible globally
+    window.addServicesTotal = total;
     updateSummary();
 }
 
 
-// --- Update Total Summary ---
 function updateSummary() {
-    // ✅ Use global addServicesTotal if set (from updateAddServicesSummary)
+    // Use global addServicesTotal if set (from updateAddServicesSummary)
     let addServicesTotal = window.addServicesTotal || 0;
 
-    // ✅ Safety net: if not yet calculated, compute manually
+    // Safety net: if not yet calculated, compute manually
     if (addServicesTotal === 0) {
         addServices.forEach(service => {
             if (service.classList.contains('selected')) {
@@ -521,28 +542,39 @@ function updateSummary() {
         });
     }
 
-    // ✅ Compute subtotal (main package + bathrooms + add-ons)
+    // Compute subtotal (main package + bathrooms + add-ons)
     const subtotal = packagePrice + fullBathroomPrice + halfBathroomPrice + addServicesTotal;
 
-    // ✅ Subtract "No Clean" total (if any)
+    // Subtract "No Clean" total (if any)
     const totalAfterNoClean = subtotal - (window.noCleanTotal || 0);
 
-    // ✅ Add tip
+    // Add tip
     const tipAmount = totalAfterNoClean * (selectedTip / 100);
     let total = totalAfterNoClean + tipAmount;
 
-    // ✅ Apply discount if any
-    if (selectedDiscount > 0) {
-        const discountAmount = total * selectedDiscount;
-        recurringTotalSpan.textContent = `$${discountAmount.toFixed(2)}`;
-        recurringTotalDiv.classList.remove('hidden');
-    } else {
-        recurringTotalDiv.classList.add('hidden');
+    // Always show main total
+    if (summaryTotal) {
+        summaryTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    // ✅ Update main total display
-    summaryTotal.textContent = `$${total.toFixed(2)}`;
+    // ✅ Show the discount value (percentage of total)
+    if (selectedDiscount > 0) {
+        const recurringTotal = total * selectedDiscount; // ✅ 15% of 200 = 30
+
+        if (recurringTotalSpan) {
+            recurringTotalSpan.textContent = `$${recurringTotal.toFixed(2)}`;
+        }
+        if (recurringTotalDiv) {
+            recurringTotalDiv.classList.remove('hidden');
+        }
+    } else {
+        if (recurringTotalDiv) {
+            recurringTotalDiv.classList.add('hidden');
+        }
+    }
 }
+
+
 
 
 // --- Form Submit ---
@@ -577,12 +609,16 @@ bookingForm.addEventListener('submit', async (e) => {
         formData.append('halfBathrooms', parseInt(halfBathroomSelect?.value) || 0);
 
         // --- Rooms to Skip Cleaning ---
-        const noCleanRooms = [...additionalServices]
+        const noCleanRoomsData = [...additionalServices]
             .filter(s => s.classList.contains('selected'))
-            .map(s => s.querySelector('span.material-symbols-outlined')?.textContent.toLowerCase())
+            .map(s => {
+                const icon = s.querySelector('span.material-symbols-outlined')?.textContent.toLowerCase();
+                const qty = parseInt(s.querySelector('.quantity')?.textContent || '0');
+                return `${icon} (${qty})`;
+            })
             .filter(Boolean)
             .join(', ');
-        formData.append('noCleanRooms', noCleanRooms);
+        formData.append('noCleanRooms', noCleanRoomsData);
 
         // --- Frequency ---
         const selectedFreq = document.querySelector('input[name="frequency"]:checked')?.value
@@ -592,12 +628,11 @@ bookingForm.addEventListener('submit', async (e) => {
 
         // --- Address Details ---
         const addressFields = [
-            { label: 'Address', key: 'address' },
+            { label: 'Street', key: 'address' },
             { label: 'Unit', key: 'unit' },
             { label: 'City', key: 'city' },
             { label: 'Province', key: 'province' },
-            { label: 'Zipcode', key: 'zipcode' },
-            { label: 'Address Note', key: 'addressNote' }
+            { label: 'Zipcode', key: 'zipcode' }
         ];
         addressFields.forEach(field => {
             const input = bookingForm.querySelector(`input[placeholder*="${field.label}"]`);
@@ -639,9 +674,21 @@ bookingForm.addEventListener('submit', async (e) => {
         formData.append('total', parseFloat(summaryTotal?.textContent.replace('$', '')) || 0);
 
         // --- Recurring Total ---
-        if (!recurringTotalDiv.classList.contains('hidden')) {
+        if (recurringTotalDiv && !recurringTotalDiv.classList.contains('hidden')) {
             formData.append('recurringTotal', parseFloat(recurringTotalSpan.textContent.replace('$', '')) || 0);
         }
+
+        // --- Additional Services ---
+        const selectedAddServices = Array.from(addServices)
+            .filter(s => s.classList.contains('selected'))
+            .map(s => {
+                const label = s.querySelector('span.font-bold')?.textContent || '';
+                const qty = parseInt(s.dataset.quantity || '1');
+                const price = parseFloat(s.dataset.price) || 0;
+                return `${label} × ${qty} ($${price * qty})`;
+            })
+            .join(', ');
+        formData.append('additionalServices', selectedAddServices);
         
         // --- Send to PHP ---
         const response = await fetch('sendBooking.php', { method: 'POST', body: formData });
@@ -659,20 +706,67 @@ bookingForm.addEventListener('submit', async (e) => {
                 confirmButtonColor: '#1E40AF'
             });
 
+            // Reset form
             bookingForm.reset();
 
-            // Reset summary
-            summaryService.textContent = '-';
-            summaryHomeType.textContent = '-';
-            summaryTotal.textContent = '$0.00';
-            summaryFrequency.textContent = '-';
-            summaryPayment.textContent = '-';
-            summaryTip.textContent = '-';
+            // Reset all selections
+            homeTypes.forEach(t => t.classList.remove('selected', 'border-4', 'border-blue-500', 'border-pink-500', 'border-green-500'));
+            paymentOptions.forEach(o => o.classList.remove('bg-blue-200', 'border-blue-500', 'font-semibold'));
+            frequencyButtons.forEach(b => b.classList.remove('selected', 'bg-blue-100'));
+            
+            // Reset additional services
+            addServices.forEach(service => {
+                service.classList.remove('selected');
+                service.dataset.quantity = 0;
+                const qty = service.querySelector('.quantity');
+                if (qty) qty.textContent = '0';
+                const controls = service.querySelector('.flex.items-center.gap-4');
+                if (controls) controls.style.display = 'none';
+            });
+            
+            // Reset no clean rooms
+            additionalServices.forEach(service => {
+                service.classList.remove('selected', 'ring-4', 'ring-blue-400', 'bg-blue-50');
+                const qty = service.querySelector('.quantity');
+                if (qty) qty.textContent = '0';
+            });
+            if (noCleanCheckbox) noCleanCheckbox.checked = false;
+            noCleanRooms.classList.add('hidden');
+
+            // Reset summary display
+            if (summaryService) summaryService.textContent = '-';
+            if (summaryHomeType) summaryHomeType.textContent = '-';
+            if (summaryTotal) summaryTotal.textContent = '$0.00';
+            if (summaryPayment) summaryPayment.textContent = 'Payment Method: -';
+            if (summaryTip) summaryTip.textContent = 'Tip: -';
+            if (summaryDate) summaryDate.textContent = '-';
+            
+            // Hide summary sections
+            if (homeTypeSummaryDiv) homeTypeSummaryDiv.classList.add('hidden');
+            if (packageSummaryDiv) packageSummaryDiv.classList.add('hidden');
+            if (fullDiv) fullDiv.classList.add('hidden');
+            if (halfDiv) halfDiv.classList.add('hidden');
+            if (recurringTotalDiv) recurringTotalDiv.classList.add('hidden');
+            
+            // Reset package dropdown
+            packageDiv.style.display = 'none';
+            
+            // Reset prices
             fullBathroomPrice = 0;
             halfBathroomPrice = 0;
             packagePrice = 0;
+            selectedTip = 0;
+            selectedDiscount = 0;
+            window.noCleanTotal = 0;
+            window.addServicesTotal = 0;
+            
+            // Remove dynamic summaries
             removeNoCleanSummary();
-            recurringTotalDiv.classList.add('hidden');
+            removeAddServicesSummary();
+            
+            // Remove e-transfer note if exists
+            const eTransferNote = document.getElementById('eTransferNote');
+            if (eTransferNote) eTransferNote.remove();
 
         } else {
             Swal.fire({
