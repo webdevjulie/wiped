@@ -257,11 +257,11 @@ additionalServices.forEach(service => {
         updateNoCleanSummary();
     });
 
-    // Plus button
+   // Plus button
     if (plusBtn) {
         plusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            console.log('Plus clicked'); // DEBUG
             
             // Remove "selected" requirement - just increment if card is active
             const currentQty = parseInt(quantityDisplay.textContent) || 0;
@@ -279,8 +279,8 @@ additionalServices.forEach(service => {
     // Minus button
     if (minusBtn) {
         minusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            console.log('Minus clicked'); // DEBUG
             
             const currentQty = parseInt(quantityDisplay.textContent) || 0;
             
@@ -303,6 +303,7 @@ function updateNoCleanSummary() {
     additionalServices.forEach(service => {
         if (service.classList.contains('selected')) {
             const icon = service.querySelector('span.material-symbols-outlined').textContent.toLowerCase();
+            const quantity = parseInt(service.querySelector('.quantity')?.textContent || '0');
             let price = 0;
             let label = '';
 
@@ -314,8 +315,11 @@ function updateNoCleanSummary() {
                 label = 'Bath (or other Wet Room)';
             }
 
-            totalNoClean += price;
-            text.push(`${label}: -$${price}`);
+            // Multiply price by quantity
+            const subtotal = price * quantity;
+            totalNoClean += subtotal;
+
+            text.push(`${label}: -$${subtotal}`);
         }
     });
 
@@ -330,8 +334,10 @@ function updateNoCleanSummary() {
         const div = document.createElement('div');
         div.id = 'summary-no-clean';
         div.className = 'flex items-center gap-2 mt-1 flex-wrap text-red-600';
-        div.innerHTML = `<span class="font-medium">Excludes:</span>
-                         <span class="font-semibold">${text.join(', ')}</span>`;
+        div.innerHTML = `
+            <span class="font-medium">Excludes:</span>
+            <span class="font-semibold">${text.join(', ')}</span>
+        `;
         halfDiv.after(div);
     }
 
@@ -412,6 +418,7 @@ addServices.forEach(service => {
     // --- Plus button ---
     if (plusBtn) {
         plusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             quantity++;
             if (quantityDisplay) quantityDisplay.textContent = quantity;
@@ -423,10 +430,10 @@ addServices.forEach(service => {
             updateAddServicesSummary();
         });
     }
-
     // --- Minus button ---
     if (minusBtn) {
         minusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             if (quantity > 1) {
                 quantity--;
